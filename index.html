@@ -1,0 +1,3900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRS Document - Soryouth Solar CRM</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-green: #22c55e;
+      --dark-green: #16a34a;
+      --darker-green: #15803d;
+      --light-green-bg: #f0fdf4;
+      --lighter-green-bg: #dcfce7;
+      --text-dark: #1f2937;
+      --text-gray: #374151;
+      --border-gray: #e5e7eb;
+      --sidebar-width: 280px;
+      --header-height: 95px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background: #fafafa;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: white;
+      border-bottom: 3px solid var(--primary-green);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 25px;
+      font-size: 13px;
+      color: var(--text-gray);
+    }
+
+    .header-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #9ca3af;
+      letter-spacing: 0.5px;
+    }
+
+    .header-meta-value {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .print-btn {
+      background: var(--primary-green);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .print-btn:hover {
+      background: var(--dark-green);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: var(--header-height);
+      width: var(--sidebar-width);
+      height: calc(100vh - var(--header-height));
+      background: white;
+      border-right: 1px solid var(--border-gray);
+      overflow-y: auto;
+      z-index: 50;
+    }
+
+    .sidebar-header {
+      padding: 20px;
+      background: var(--light-green-bg);
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .sidebar-header h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark-green);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc-item {
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 12px 20px;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+
+    .toc-link:hover {
+      background: var(--light-green-bg);
+      border-left-color: var(--primary-green);
+      padding-left: 25px;
+    }
+
+    .toc-link.active {
+      background: var(--lighter-green-bg);
+      border-left-color: var(--primary-green);
+      color: var(--dark-green);
+      font-weight: 600;
+    }
+
+    .main-content {
+      margin-left: var(--sidebar-width);
+      margin-top: var(--header-height);
+      padding: 40px 50px;
+      max-width: 1400px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--primary-green);
+    }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--dark-green);
+      margin-top: 50px;
+      margin-bottom: 20px;
+      padding-left: 15px;
+      border-left: 5px solid var(--primary-green);
+    }
+
+    h2::before {
+      content: "§ ";
+      color: var(--primary-green);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--darker-green);
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--darker-green);
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin: 15px 0;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    strong {
+      color: var(--darker-green);
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin: 15px 0;
+      padding-left: 25px;
+    }
+
+    li {
+      margin: 10px 0;
+      line-height: 1.7;
+    }
+
+    ul li {
+      list-style: none;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    ul li::before {
+      content: "●";
+      color: var(--primary-green);
+      position: absolute;
+      left: 0;
+      font-size: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    thead {
+      background: var(--primary-green);
+      color: white;
+    }
+
+    thead th {
+      font-weight: 600;
+      text-align: left;
+      padding: 14px 16px;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    tbody tr:hover {
+      background: var(--light-green-bg);
+    }
+
+    tbody td {
+      padding: 12px 16px;
+      vertical-align: top;
+    }
+
+    code {
+      background: var(--light-green-bg);
+      color: var(--darker-green);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+    }
+
+    pre {
+      background: var(--light-green-bg);
+      border-left: 4px solid var(--primary-green);
+      padding: 20px;
+      margin: 25px 0;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: var(--text-dark);
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid var(--border-gray);
+      margin: 40px 0;
+    }
+
+    a {
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--dark-green);
+      text-decoration: underline;
+    }
+
+    .info-box {
+      background: var(--light-green-bg);
+      border: 2px solid var(--primary-green);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+    }
+
+    .info-box h4 {
+      color: var(--primary-green);
+      margin-top: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--primary-green);
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    .module-id {
+      background: var(--primary-green);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .warning-box {
+      background: #fffbeb;
+      border: 2px solid #fbbf24;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 25px 0;
+    }
+
+    blockquote {
+      border-left: 5px solid var(--primary-green);
+      background: var(--light-green-bg);
+      margin: 25px 0;
+      padding: 20px;
+      font-style: italic;
+      border-radius: 4px;
+    }
+
+    @media print {
+      .header, .sidebar, .print-btn {
+        display: none;
+      }
+      
+      .main-content {
+        margin-left: 0;
+        margin-top: 0;
+        padding: 20px;
+      }
+
+      body {
+        background: white;
+      }
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--primary-green);
+      cursor: pointer;
+      padding: 8px;
+      margin-right: 10px;
+    }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 40;
+    }
+
+    .mobile-overlay.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --header-height: 70px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .header {
+        padding: 0 15px;
+      }
+
+      .header-logo {
+        display: none;
+      }
+
+      .header-divider {
+        display: none;
+      }
+
+      .header-title {
+        font-size: 14px;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+        z-index: 50;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 20px 15px;
+        margin-top: 70px;
+      }
+
+      .header-meta {
+        display: none;
+      }
+
+      .print-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 20px;
+        padding-left: 10px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+
+      h4 {
+        font-size: 15px;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      thead th {
+        font-size: 13px;
+        padding: 10px 12px;
+      }
+
+      tbody td {
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+
+      pre {
+        overflow-x: auto;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-title {
+        font-size: 12px;
+      }
+
+      .header-logo {
+        height: 40px;
+      }
+
+      .header-divider {
+        display: none;
+      }
+
+      .print-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .header-logo {
+      height: 85px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .header-divider {
+      width: 2px;
+      height: 50px;
+      background: var(--border-gray);
+      margin: 0 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <div class="header">
+    <div class="header-left">
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      <img src="logo.jpg" alt="Soryouth Mahindra Solarize Logo" class="header-logo">
+      <div class="header-divider"></div>
+      <div class="header-title">Software Requirements Specification</div>
+    </div>
+    <div class="header-meta">
+      <div class="header-meta-item">
+        <span class="header-meta-label">Version</span>
+        <span class="header-meta-value">1.0</span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-label">Date</span>
+        <span class="header-meta-value">October 12, 2025</span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-label">Company</span>
+        <span class="header-meta-value">Soryouth Renewable Energy</span>
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">📄 Print to PDF</button>
+  </div>
+
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <h3>Table of Contents</h3>
+    </div>
+    <ul class="toc-list">
+      <li class="toc-item"><a href="#1-introduction" class="toc-link">1. Introduction</a></li>
+      <li class="toc-item"><a href="#2-overall-description" class="toc-link">2. Overall Description</a></li>
+      <li class="toc-item"><a href="#3-system-features" class="toc-link">3. System Features</a></li>
+      <li class="toc-item"><a href="#4-external-interface-requirements" class="toc-link">4. External Interface Requirements</a></li>
+      <li class="toc-item"><a href="#5-non-functional-requirements" class="toc-link">5. Non-Functional Requirements</a></li>
+      <li class="toc-item"><a href="#6-other-requirements" class="toc-link">6. Other Requirements</a></li>
+      <li class="toc-item"><a href="#7-appendices" class="toc-link">7. Appendices</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+  <h1>Software Requirements Specification (SRS)</h1>
+<h2>Solar CRM System for Soryouth Renewable Energy Pvt Ltd</h2>
+<p><strong>Version:</strong> 2.0<br><strong>Date:</strong> October 12, 2025<br><strong>Prepared by:</strong> Development Team<br><strong>Company:</strong> Soryouth Renewable Energy Pvt Ltd</p>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-introduction">Introduction</a></li>
+<li><a href="#2-overall-description">Overall Description</a></li>
+<li><a href="#3-system-features">System Features</a></li>
+<li><a href="#4-external-interface-requirements">External Interface Requirements</a></li>
+<li><a href="#5-non-functional-requirements">Non-Functional Requirements</a></li>
+<li><a href="#6-other-requirements">Other Requirements</a></li>
+<li><a href="#7-appendices">Appendices</a></li>
+</ol>
+<hr>
+<h2 id="1-introduction">1. Introduction</h2>
+<h3>1.1 Purpose</h3>
+<p>This Software Requirements Specification (SRS) document provides a comprehensive description of the Solar CRM (Customer Relationship Management) system for Soryouth Renewable Energy Pvt Ltd. The system is designed to manage the complete lifecycle of solar installation projects, from lead generation through installation, maintenance, and performance monitoring. This document is intended for:</p>
+<ul>
+<li>Development team members</li>
+<li>Project managers</li>
+<li>Quality assurance testers</li>
+<li>Stakeholders and business owners</li>
+<li>System administrators</li>
+<li>End users (sales executives, engineers, managers)</li>
+</ul>
+<h3>1.2 Scope</h3>
+<p>The Solar CRM System is a comprehensive web-based application that will:</p>
+<ul>
+<li><strong>Product Name:</strong> Soryouth Solar CRM</li>
+<li><strong>Product Mission:</strong> Streamline and automate all aspects of solar project management from lead acquisition to post-installation maintenance</li>
+</ul>
+<p><strong>Key Capabilities:</strong></p>
+<ul>
+<li>Manage complete customer lifecycle from lead to post-installation support</li>
+<li>Track and monitor solar panel installations and system performance</li>
+<li>Automate communication workflows across multiple channels (Email, WhatsApp, SMS)</li>
+<li>Provide real-time analytics and business intelligence</li>
+<li>Manage inventory, vendors, and procurement</li>
+<li>Handle financial operations including invoicing, expenses, and subsidies</li>
+<li>Enable field operations with GPS tracking and mobile access</li>
+<li>Integrate with external systems (Google Reviews, RMS, Email systems)</li>
+</ul>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Increased operational efficiency through automation</li>
+<li>Better customer relationship management</li>
+<li>Real-time visibility into business performance</li>
+<li>Reduced manual errors and data duplication</li>
+<li>Improved collaboration across teams</li>
+<li>Enhanced decision-making through analytics</li>
+</ul>
+<p><strong>Out of Scope:</strong></p>
+<ul>
+<li>Manufacturing of solar panels</li>
+<li>Direct hardware control of solar installations</li>
+<li>Third-party accounting software (beyond basic invoicing)</li>
+</ul>
+<h3>1.3 Definitions, Acronyms, and Abbreviations</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CRM</td>
+<td>Customer Relationship Management</td>
+</tr>
+<tr>
+<td>RMS</td>
+<td>Remote Monitoring System</td>
+</tr>
+<tr>
+<td>EPC</td>
+<td>Engineering, Procurement, and Construction</td>
+</tr>
+<tr>
+<td>AMC</td>
+<td>Annual Maintenance Contract</td>
+</tr>
+<tr>
+<td>GPS</td>
+<td>Global Positioning System</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Application Programming Interface</td>
+</tr>
+<tr>
+<td>SRS</td>
+<td>Software Requirements Specification</td>
+</tr>
+<tr>
+<td>UI</td>
+<td>User Interface</td>
+</tr>
+<tr>
+<td>UX</td>
+<td>User Experience</td>
+</tr>
+<tr>
+<td>SSO</td>
+<td>Single Sign-On</td>
+</tr>
+<tr>
+<td>kW</td>
+<td>Kilowatt (unit of power)</td>
+</tr>
+<tr>
+<td>PPA</td>
+<td>Power Purchase Agreement</td>
+</tr>
+<tr>
+<td>NOC</td>
+<td>No Objection Certificate</td>
+</tr>
+<tr>
+<td>GST</td>
+<td>Goods and Services Tax</td>
+</tr>
+<tr>
+<td>Lead</td>
+<td>Potential customer or sales opportunity</td>
+</tr>
+<tr>
+<td>Site Survey</td>
+<td>Pre-installation assessment of customer location</td>
+</tr>
+<tr>
+<td>Plant Monitoring</td>
+<td>Real-time tracking of solar system performance</td>
+</tr>
+</tbody></table>
+<h3>1.4 References</h3>
+<ul>
+<li>IEEE Std 830-1998, IEEE Recommended Practice for Software Requirements Specifications</li>
+<li>Soryouth RE Pvt Ltd Business Requirements Document</li>
+<li>Solar Industry Best Practices Guidelines</li>
+<li>Indian Renewable Energy Regulations</li>
+<li>Google Reviews API Documentation</li>
+<li>WhatsApp Business API Documentation</li>
+</ul>
+<h3>1.5 Overview</h3>
+<p>This SRS document is organized into seven main sections:</p>
+<ul>
+<li>Section 1 provides an introduction and context</li>
+<li>Section 2 describes the overall product perspective and features</li>
+<li>Section 3 details specific system features and functional requirements</li>
+<li>Section 4 specifies external interface requirements</li>
+<li>Section 5 defines non-functional requirements</li>
+<li>Section 6 covers additional requirements and future enhancements</li>
+<li>Section 7 includes appendices with supplementary information</li>
+</ul>
+<hr>
+<h2 id="2-overall-description">2. Overall Description</h2>
+<h3>2.1 Product Perspective</h3>
+<p>The Solar CRM System is a standalone web-based application that integrates with multiple external systems and services. It serves as the central hub for all business operations of Soryouth Renewable Energy Pvt Ltd.</p>
+<p><strong>System Context:</strong></p>
+<ul>
+<li><strong>Frontend:</strong> Modern responsive web application accessible via browsers</li>
+<li><strong>Backend:</strong> Node.js/Express server with RESTful API architecture</li>
+<li><strong>Database:</strong> MongoDB for data persistence</li>
+<li><strong>External Integrations:</strong><ul>
+<li>Google Reviews API</li>
+<li>WhatsApp Business API</li>
+<li>Email services (SMTP/IMAP)</li>
+<li>Solar RMS (Remote Monitoring Systems)</li>
+<li>GPS/Location services</li>
+<li>Automated dialer systems</li>
+</ul>
+</li>
+</ul>
+<p><strong>System Architecture:</strong></p>
+<pre><code>┌─────────────────────────────────────────────────┐
+│           Web Browser (Frontend)                 │
+│  React + TypeScript + TailwindCSS + Shadcn UI   │
+└─────────────────────────────────────────────────┘
+                      ↕ HTTPS/REST API
+┌─────────────────────────────────────────────────┐
+│         Application Server (Backend)             │
+│         Node.js + Express + TypeScript           │
+└─────────────────────────────────────────────────┘
+                      ↕
+┌─────────────────────────────────────────────────┐
+│           Database Layer (MongoDB)            │
+└─────────────────────────────────────────────────┘
+                      ↕
+┌─────────────────────────────────────────────────┐
+│          External Integrations                   │
+│  Google | WhatsApp | Email | RMS | GPS | Dialer │
+└─────────────────────────────────────────────────┘
+</code></pre>
+<h3>2.2 Product Functions</h3>
+<p>The Solar CRM System provides the following high-level functions:</p>
+<ol>
+<li><strong>Lead Management</strong> - Capture, track, and convert leads from multiple sources</li>
+<li><strong>Proposal &amp; Quotation</strong> - Generate and manage customer proposals</li>
+<li><strong>Project Management</strong> - Visual tracking of installation projects</li>
+<li><strong>Site Survey Management</strong> - Schedule and document site assessments</li>
+<li><strong>Multi-Channel Communication</strong> - Unified communication platform</li>
+<li><strong>Task Management</strong> - Assign and track team activities</li>
+<li><strong>Document Management</strong> - Centralized document storage and templates</li>
+<li><strong>Service Ticketing</strong> - AMC and maintenance request management</li>
+<li><strong>Inventory Management</strong> - Track solar components and supplies</li>
+<li><strong>Invoicing &amp; Billing</strong> - Generate invoices and track payments</li>
+<li><strong>Subsidy Management</strong> - Process government subsidy applications</li>
+<li><strong>Performance Monitoring</strong> - Track installed system performance</li>
+<li><strong>Vendor Management</strong> - Manage supplier relationships</li>
+<li><strong>User Management</strong> - Role-based access control</li>
+<li><strong>Analytics &amp; Reporting</strong> - Business intelligence dashboards</li>
+<li><strong>Expense Tracking</strong> - Monitor project costs and budgets</li>
+<li><strong>Customer Feedback</strong> - Collect and analyze customer satisfaction</li>
+<li><strong>System Configuration</strong> - Customize system settings</li>
+<li><strong>Plant Monitoring</strong> - Real-time solar system data visualization</li>
+<li><strong>Live Location Tracking</strong> - Track field personnel in real-time</li>
+<li><strong>Chatbot Integration</strong> - AI-powered customer support</li>
+<li><strong>Data Import/Export</strong> - Migrate data from legacy systems</li>
+</ol>
+<h3>2.3 User Classes and Characteristics</h3>
+<table>
+<thead>
+<tr>
+<th>User Class</th>
+<th>Description</th>
+<th>Technical Expertise</th>
+<th>Frequency of Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>System Administrator</strong></td>
+<td>Manages system configuration, user accounts, and security</td>
+<td>High</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Sales Executive</strong></td>
+<td>Manages leads, creates proposals, closes deals</td>
+<td>Medium</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Project Manager</strong></td>
+<td>Oversees multiple projects, allocates resources</td>
+<td>Medium</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Field Engineer</strong></td>
+<td>Conducts site surveys, performs installations</td>
+<td>Low-Medium</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Service Technician</strong></td>
+<td>Handles maintenance and service tickets</td>
+<td>Low-Medium</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Finance Manager</strong></td>
+<td>Manages invoicing, expenses, subsidies</td>
+<td>Medium</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Inventory Manager</strong></td>
+<td>Tracks stock, manages procurement</td>
+<td>Medium</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Business Analyst</strong></td>
+<td>Generates reports and analyzes performance</td>
+<td>High</td>
+<td>Weekly</td>
+</tr>
+<tr>
+<td><strong>Customer Support</strong></td>
+<td>Handles customer queries via chatbot and tickets</td>
+<td>Medium</td>
+<td>Daily</td>
+</tr>
+<tr>
+<td><strong>Senior Management</strong></td>
+<td>Views dashboards and makes strategic decisions</td>
+<td>Low-Medium</td>
+<td>Weekly</td>
+</tr>
+</tbody></table>
+<h3>2.4 Operating Environment</h3>
+<p><strong>Client-Side Requirements:</strong></p>
+<ul>
+<li><strong>Web Browsers:</strong> Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</li>
+<li><strong>Screen Resolution:</strong> Minimum 1280x720 (responsive design supports mobile)</li>
+<li><strong>Internet Connection:</strong> Broadband (minimum 2 Mbps)</li>
+<li><strong>JavaScript:</strong> Enabled</li>
+</ul>
+<p><strong>Server-Side Requirements:</strong></p>
+<ul>
+<li><strong>Operating System:</strong> Linux (Ubuntu 20.04 LTS or higher)</li>
+<li><strong>Runtime:</strong> Node.js 18.x or higher</li>
+<li><strong>Database:</strong> MongoDB 14.x or higher</li>
+<li><strong>Memory:</strong> Minimum 4GB RAM (8GB recommended)</li>
+<li><strong>Storage:</strong> Minimum 50GB SSD</li>
+<li><strong>Network:</strong> Static IP with HTTPS/SSL support</li>
+</ul>
+<p><strong>Mobile/Field Operations:</strong></p>
+<ul>
+<li><strong>Mobile Browsers:</strong> iOS Safari, Android Chrome</li>
+<li><strong>GPS:</strong> Required for location tracking features</li>
+<li><strong>Camera:</strong> Required for document capture and site photos</li>
+</ul>
+<h3>2.5 Design and Implementation Constraints</h3>
+<ol>
+<li><p><strong>Technology Stack:</strong></p>
+<ul>
+<li>Frontend must use React with TypeScript</li>
+<li>Backend must use Node.js with Express</li>
+<li>Database must be MongoDB</li>
+<li>UI must use Shadcn UI component library</li>
+</ul>
+</li>
+<li><p><strong>Security Constraints:</strong></p>
+<ul>
+<li>All data transmission must use HTTPS/TLS 1.2+</li>
+<li>Passwords must be hashed using bcrypt</li>
+<li>Session management required for authentication</li>
+<li>Role-based access control (RBAC) mandatory</li>
+</ul>
+</li>
+<li><p><strong>Performance Constraints:</strong></p>
+<ul>
+<li>Page load time &lt; 3 seconds</li>
+<li>API response time &lt; 500ms for 95% of requests</li>
+<li>Support minimum 100 concurrent users</li>
+<li>Real-time updates with &lt; 2 second delay</li>
+</ul>
+</li>
+<li><p><strong>Integration Constraints:</strong></p>
+<ul>
+<li>Must use official Google Reviews API</li>
+<li>WhatsApp integration via Business API only</li>
+<li>Email integration via IMAP/SMTP protocols</li>
+<li>GPS data must comply with privacy regulations</li>
+</ul>
+</li>
+<li><p><strong>UI/UX Constraints:</strong></p>
+<ul>
+<li>Color scheme: Solid green and white (no gradients)</li>
+<li>Must be responsive (mobile, tablet, desktop)</li>
+<li>Must support dark mode</li>
+<li>Must be accessible (WCAG 2.1 Level A minimum)</li>
+</ul>
+</li>
+<li><p><strong>Data Constraints:</strong></p>
+<ul>
+<li>All monetary values in Indian Rupees (₹)</li>
+<li>Date format: DD-MM-YYYY (Indian standard)</li>
+<li>All timestamps in IST (Indian Standard Time)</li>
+<li>Phone numbers in Indian format (+91)</li>
+</ul>
+</li>
+</ol>
+<h3>2.6 User Documentation</h3>
+<p>The system will include:</p>
+<ol>
+<li><strong>User Manual</strong> - Comprehensive guide for all user roles</li>
+<li><strong>Administrator Guide</strong> - System configuration and maintenance</li>
+<li><strong>Quick Start Guide</strong> - Getting started for new users</li>
+<li><strong>API Documentation</strong> - For integration developers</li>
+<li><strong>Video Tutorials</strong> - Role-specific training videos</li>
+<li><strong>In-App Help</strong> - Contextual help throughout the application</li>
+<li><strong>FAQ Section</strong> - Common questions and answers</li>
+</ol>
+<h3>2.7 Assumptions and Dependencies</h3>
+<p><strong>Assumptions:</strong></p>
+<ol>
+<li>Users have basic computer literacy</li>
+<li>Stable internet connectivity is available</li>
+<li>Solar RMS systems provide data via standard APIs</li>
+<li>Third-party services (Google, WhatsApp) remain available</li>
+<li>Users have necessary mobile devices for field operations</li>
+</ol>
+<p><strong>Dependencies:</strong></p>
+<ol>
+<li>Google Reviews API availability and terms of service</li>
+<li>WhatsApp Business API approval and compliance</li>
+<li>Email service provider reliability</li>
+<li>GPS service availability and accuracy</li>
+<li>Solar RMS vendor API compatibility</li>
+<li>Dialer system integration availability</li>
+<li>Third-party payment gateway for invoicing</li>
+<li>SSL certificate for secure communications</li>
+</ol>
+<hr>
+<h2 id="3-system-features">3. System Features</h2>
+<h3>3.1 Dashboard Module</h3>
+<p><strong>3.1.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Central hub displaying key business metrics, KPIs, and quick access to important information</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-001</li>
+</ul>
+<p><strong>3.1.2 Functional Requirements</strong></p>
+<p>FR-001.1: The system shall display real-time revenue metrics comparing actual vs target
+FR-001.2: The system shall show installation progress by category (residential, commercial, industrial)
+FR-001.3: The system shall display performance metrics for leads, surveys, proposals, and projects
+FR-001.4: The system shall show active installation progress with engineer assignments
+FR-001.5: The system shall display inventory alerts for items below reorder levels
+FR-001.6: The system shall show upcoming site survey schedules
+FR-001.7: The system shall display AMC renewal reminders
+FR-001.8: The system shall show pending approval items (quotations, design changes)
+FR-001.9: The system shall provide daily performance reports for each user
+FR-001.10: The system shall display personalized widgets based on user role
+FR-001.11: The dashboard shall refresh automatically every 30 seconds
+FR-001.12: Users shall be able to customize dashboard layout and widgets</p>
+<p><strong>3.1.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>User login credentials</td>
+<td>Fetch user role and permissions</td>
+<td>Personalized dashboard view</td>
+</tr>
+<tr>
+<td>Real-time data from all modules</td>
+<td>Aggregate and calculate KPIs</td>
+<td>Visual charts and metrics</td>
+</tr>
+<tr>
+<td>Date range selection</td>
+<td>Filter data by date range</td>
+<td>Filtered reports</td>
+</tr>
+<tr>
+<td>User preferences</td>
+<td>Apply customization settings</td>
+<td>Customized widget layout</td>
+</tr>
+</tbody></table>
+<p><strong>3.1.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Clean, uncluttered layout with solid green and white color scheme</li>
+<li>Responsive grid system for widget placement</li>
+<li>Interactive charts using Recharts library</li>
+<li>Quick action buttons for common tasks</li>
+<li>Real-time update indicators</li>
+<li>Mobile-optimized card layout</li>
+</ul>
+<hr>
+<h3>3.2 Lead Management Module</h3>
+<p><strong>3.2.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Comprehensive lead capture, tracking, nurturing, and conversion system with multi-channel integration</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-002</li>
+</ul>
+<p><strong>3.2.2 Functional Requirements</strong></p>
+<p>FR-002.1: The system shall capture leads from multiple sources (manual entry, website, email, WhatsApp, phone)
+FR-002.2: The system shall automatically import leads from email (<a href="mailto:leads@company.com">leads@company.com</a>)
+FR-002.3: The system shall integrate WhatsApp messages as lead sources
+FR-002.4: The system shall track lead stages (New, Contacted, Qualified, Proposal, Negotiation, Won, Lost)
+FR-002.5: The system shall assign leads to sales executives automatically or manually
+FR-002.6: The system shall enable lead transfer between sales executives
+FR-002.7: The system shall restrict lead visibility based on assignment (privacy)
+FR-002.8: The system shall store complete lead history including electricity bills
+FR-002.9: The system shall track site survey history for each lead
+FR-002.10: The system shall maintain interaction timeline for each lead
+FR-002.11: The system shall enable direct dialing from lead module (auto-dialer integration)
+FR-002.12: The system shall calculate expected deal value
+FR-002.13: The system shall apply filters for lead search (status, date, value, executive, location)
+FR-002.14: The system shall import lead data from external CRM systems
+FR-002.15: The system shall export lead data in CSV/Excel format
+FR-002.16: The system shall send automatic follow-up reminders
+FR-002.17: The system shall track lead source and conversion rates</p>
+<p><strong>3.2.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lead information form</td>
+<td>Validate and store in database</td>
+<td>New lead record created</td>
+</tr>
+<tr>
+<td>Email to leads@domain</td>
+<td>Parse email content and extract lead data</td>
+<td>Auto-created lead record</td>
+</tr>
+<tr>
+<td>WhatsApp message</td>
+<td>Extract contact and message details</td>
+<td>Lead captured with conversation</td>
+</tr>
+<tr>
+<td>Electricity bill upload</td>
+<td>OCR and data extraction</td>
+<td>Bill data stored in lead history</td>
+</tr>
+<tr>
+<td>Lead transfer request</td>
+<td>Update assignment and notify users</td>
+<td>Lead reassigned with history</td>
+</tr>
+<tr>
+<td>Dialer click</td>
+<td>Initiate call via dialer API</td>
+<td>Call connected and logged</td>
+</tr>
+<tr>
+<td>Filter criteria</td>
+<td>Query database with filters</td>
+<td>Filtered lead list</td>
+</tr>
+<tr>
+<td>External CRM data file</td>
+<td>Parse and map fields</td>
+<td>Imported leads in system</td>
+</tr>
+</tbody></table>
+<p><strong>3.2.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Kanban board view for lead pipeline visualization</li>
+<li>List view with sortable columns and filters</li>
+<li>Lead detail page with tabbed sections (Info, History, Documents, Communication)</li>
+<li>Quick action buttons (Call, Email, WhatsApp, Transfer)</li>
+<li>Electricity bill viewer with history</li>
+<li>Site survey timeline visualization</li>
+<li>Click-to-call buttons with dialer integration</li>
+<li>Bulk action toolbar for mass operations</li>
+<li>Color-coded lead stages (green for won, white for neutral)</li>
+</ul>
+<hr>
+<h3>3.3 Proposal &amp; Quotation Module</h3>
+<p><strong>3.3.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> System for creating, managing, and tracking customer proposals and quotations</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-003</li>
+</ul>
+<p><strong>3.3.2 Functional Requirements</strong></p>
+<p>FR-003.1: The system shall provide proposal templates for different project types
+FR-003.2: The system shall auto-calculate costs based on system size and components
+FR-003.3: The system shall include ROI calculator
+FR-003.4: The system shall generate PDF proposals with company branding
+FR-003.5: The system shall track proposal status (Draft, Sent, Viewed, Approved, Rejected)
+FR-003.6: The system shall enable proposal versioning
+FR-003.7: The system shall send proposals via email automatically
+FR-003.8: The system shall track when proposals are viewed by customers
+FR-003.9: The system shall enable comparison of multiple proposal versions
+FR-003.10: The system shall integrate with inventory for component availability
+FR-003.11: The system shall calculate GST and other taxes automatically</p>
+<p><strong>3.3.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Project parameters (size, location, type)</td>
+<td>Calculate costs and generate proposal</td>
+<td>Proposal document</td>
+</tr>
+<tr>
+<td>Component selection</td>
+<td>Fetch prices and availability</td>
+<td>Cost breakdown</td>
+</tr>
+<tr>
+<td>Customer approval</td>
+<td>Update proposal status</td>
+<td>Approved proposal</td>
+</tr>
+</tbody></table>
+<p><strong>3.3.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Step-by-step proposal creation wizard</li>
+<li>Live preview of proposal document</li>
+<li>Drag-and-drop component builder</li>
+<li>Cost breakdown visualization</li>
+<li>Template library</li>
+<li>Approval workflow indicators</li>
+</ul>
+<hr>
+<h3>3.4 Project Management Module</h3>
+<p><strong>3.4.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Visual project tracking system for managing solar installations from start to completion</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-004</li>
+</ul>
+<p><strong>3.4.2 Functional Requirements</strong></p>
+<p>FR-004.1: The system shall display projects in Kanban board view with stages
+FR-004.2: The system shall track project stages (Survey, Design, Procurement, Installation, Commissioning, Complete)
+FR-004.3: The system shall show project progress percentage
+FR-004.4: The system shall assign engineers and teams to projects
+FR-004.5: The system shall track start and expected completion dates
+FR-004.6: The system shall send automated progress updates to customers
+FR-004.7: The system shall attach documents to projects
+FR-004.8: The system shall track project expenses and budget
+FR-004.9: The system shall enable project timeline visualization (Gantt chart)
+FR-004.10: The system shall send delay alerts for overdue projects</p>
+<p><strong>3.3.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Approved proposal</td>
+<td>Create project record</td>
+<td>New project created</td>
+</tr>
+<tr>
+<td>Stage completion</td>
+<td>Update progress percentage</td>
+<td>Project moved to next stage</td>
+</tr>
+<tr>
+<td>Timeline dates</td>
+<td>Calculate delays and send alerts</td>
+<td>Notification to stakeholders</td>
+</tr>
+</tbody></table>
+<p><strong>3.4.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Kanban board with drag-and-drop functionality</li>
+<li>Timeline/Gantt chart view</li>
+<li>Progress bar for each project</li>
+<li>Color-coded status indicators (green for on-track, white for neutral)</li>
+<li>Quick filters (by status, engineer, date range)</li>
+<li>Mobile-friendly project cards</li>
+</ul>
+<hr>
+<h3>3.5 Site Survey Module</h3>
+<p><strong>3.5.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Manage pre-installation site assessments with GPS tracking and documentation</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-005</li>
+</ul>
+<p><strong>3.5.2 Functional Requirements</strong></p>
+<p>FR-005.1: The system shall schedule site surveys with date, time, and engineer assignment
+FR-005.2: The system shall capture GPS coordinates for survey locations
+FR-005.3: The system shall enable photo capture and upload from mobile devices
+FR-005.4: The system shall track survey status (Scheduled, In Progress, Completed, Cancelled)
+FR-005.5: The system shall provide survey report templates
+FR-005.6: The system shall show live location of engineers during surveys
+FR-005.7: The system shall track survey history for each customer
+FR-005.8: The system shall calculate travel distance and time
+FR-005.9: The system shall send survey confirmation to customers
+FR-005.10: The system shall enable offline survey data capture with sync</p>
+<p><strong>3.5.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Survey schedule request</td>
+<td>Assign engineer and create appointment</td>
+<td>Scheduled survey</td>
+</tr>
+<tr>
+<td>GPS location data</td>
+<td>Track engineer location in real-time</td>
+<td>Live location on map</td>
+</tr>
+<tr>
+<td>Photos and notes</td>
+<td>Store in survey record</td>
+<td>Completed survey report</td>
+</tr>
+<tr>
+<td>Survey completion</td>
+<td>Generate report PDF</td>
+<td>Survey document</td>
+</tr>
+</tbody></table>
+<p><strong>3.5.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Calendar view for survey scheduling</li>
+<li>Map view showing engineer locations in real-time</li>
+<li>Mobile-optimized survey form with camera integration</li>
+<li>Photo gallery with annotations</li>
+<li>Survey checklist with completion tracking</li>
+<li>GPS coordinate display and verification</li>
+</ul>
+<hr>
+<h3>3.6 Communication Module</h3>
+<p><strong>3.6.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Unified multi-channel communication platform (Email, WhatsApp, SMS)</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-006</li>
+</ul>
+<p><strong>3.6.2 Functional Requirements</strong></p>
+<p>FR-006.1: The system shall integrate with WhatsApp Business API for messaging
+FR-006.2: The system shall send and receive emails via SMTP/IMAP
+FR-006.3: The system shall send SMS notifications
+FR-006.4: The system shall provide message templates for common scenarios
+FR-006.5: The system shall track message delivery status
+FR-006.6: The system shall maintain conversation history with customers
+FR-006.7: The system shall enable bulk messaging
+FR-006.8: The system shall schedule messages for future delivery
+FR-006.9: The system shall link messages to leads, projects, and tickets
+FR-006.10: The system shall support file attachments in messages
+FR-006.11: The system shall provide chatbot for automated responses</p>
+<p><strong>3.6.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Message compose (template or custom)</td>
+<td>Send via selected channel (WhatsApp/Email/SMS)</td>
+<td>Message delivered</td>
+</tr>
+<tr>
+<td>Incoming WhatsApp message</td>
+<td>Parse and create lead/ticket if needed</td>
+<td>Auto-response or alert</td>
+</tr>
+<tr>
+<td>Bulk message request</td>
+<td>Queue and send to recipient list</td>
+<td>Delivery report</td>
+</tr>
+<tr>
+<td>Chatbot query</td>
+<td>AI processing and response generation</td>
+<td>Automated reply</td>
+</tr>
+</tbody></table>
+<p><strong>3.6.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Unified inbox showing all channels</li>
+<li>Template library with search and categories</li>
+<li>Chat interface for WhatsApp conversations</li>
+<li>Email composer with rich text editor</li>
+<li>Delivery status indicators (sent, delivered, read)</li>
+<li>Contact selector with filters</li>
+<li>Chatbot configuration interface</li>
+</ul>
+<hr>
+<h3>3.7 Task Management Module</h3>
+<p><strong>3.7.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Assign, track, and manage team tasks and workflows</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-007</li>
+</ul>
+<p><strong>3.7.2 Functional Requirements</strong></p>
+<p>FR-007.1: The system shall allow task creation with title, description, due date, and priority
+FR-007.2: The system shall assign tasks to users or teams
+FR-007.3: The system shall make tasks accessible to authorized users (based on permissions)
+FR-007.4: The system shall track task status (Pending, In Progress, Completed, Cancelled)
+FR-007.5: The system shall send due date reminders
+FR-007.6: The system shall enable task comments and updates
+FR-007.7: The system shall attach files to tasks
+FR-007.8: The system shall link tasks to projects, leads, or tickets
+FR-007.9: The system shall provide task board view (Kanban)
+FR-007.10: The system shall enable recurring tasks
+FR-007.11: The system shall track task completion time
+FR-007.12: The system shall generate task reports by user/team</p>
+<p><strong>3.7.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Task creation form</td>
+<td>Validate and assign to user</td>
+<td>New task created</td>
+</tr>
+<tr>
+<td>Task status update</td>
+<td>Update record and notify stakeholders</td>
+<td>Status changed</td>
+</tr>
+<tr>
+<td>Due date</td>
+<td>Schedule reminder notifications</td>
+<td>Reminder sent</td>
+</tr>
+</tbody></table>
+<p><strong>3.7.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Kanban board for visual task management</li>
+<li>List view with filters and sorting</li>
+<li>Task detail modal with comments section</li>
+<li>Priority color coding (high, medium, low)</li>
+<li>Calendar view for task scheduling</li>
+<li>Quick task creation from any module</li>
+</ul>
+<hr>
+<h3>3.8 Document Management Module</h3>
+<p><strong>3.8.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Centralized repository for all project documents and templates</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-008</li>
+</ul>
+<p><strong>3.8.2 Functional Requirements</strong></p>
+<p>FR-008.1: The system shall store documents in categories (Agreements, Technical, Financial, Legal, Templates)
+FR-008.2: The system shall provide version control for documents
+FR-008.3: The system shall enable document search by name, category, date, project
+FR-008.4: The system shall provide document templates for common needs
+FR-008.5: The system shall support multiple file formats (PDF, DOC, XLS, DWG, images)
+FR-008.6: The system shall track document access and download history
+FR-008.7: The system shall enable document sharing with customers
+FR-008.8: The system shall implement folder-based organization
+FR-008.9: The system shall support bulk document upload
+FR-008.10: The system shall generate documents from templates with data auto-fill</p>
+<p><strong>3.8.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Document upload</td>
+<td>Store file and create metadata</td>
+<td>Document saved</td>
+</tr>
+<tr>
+<td>Template + data</td>
+<td>Merge data into template</td>
+<td>Generated document</td>
+</tr>
+<tr>
+<td>Search query</td>
+<td>Find matching documents</td>
+<td>Search results</td>
+</tr>
+</tbody></table>
+<p><strong>3.8.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Tree view for folder navigation</li>
+<li>Grid and list view options</li>
+<li>Document preview for common formats</li>
+<li>Drag-and-drop upload</li>
+<li>Bulk action toolbar</li>
+<li>Template gallery with preview</li>
+</ul>
+<hr>
+<h3>3.9 Service Ticketing (AMC &amp; Tickets) Module</h3>
+<p><strong>3.9.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Manage annual maintenance contracts and service requests</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-009</li>
+</ul>
+<p><strong>3.9.2 Functional Requirements</strong></p>
+<p>FR-009.1: The system shall create service tickets from customer requests
+FR-009.2: The system shall track ticket status (Open, In Progress, Resolved, Closed)
+FR-009.3: The system shall assign tickets to service technicians
+FR-009.4: The system shall track AMC contracts with renewal reminders
+FR-009.5: The system shall schedule preventive maintenance
+FR-009.6: The system shall show live location of technicians en route
+FR-009.7: The system shall enable customer feedback after service
+FR-009.8: The system shall track service history for each installation
+FR-009.9: The system shall calculate SLA compliance
+FR-009.10: The system shall generate service reports</p>
+<p><strong>3.9.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Service request (email/call/WhatsApp)</td>
+<td>Create ticket and assign technician</td>
+<td>New ticket created</td>
+</tr>
+<tr>
+<td>Technician location</td>
+<td>Track GPS and update map</td>
+<td>Live location visible</td>
+</tr>
+<tr>
+<td>Service completion</td>
+<td>Update ticket and request feedback</td>
+<td>Ticket closed</td>
+</tr>
+</tbody></table>
+<p><strong>3.9.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Ticket list with status filters</li>
+<li>Ticket detail page with service history</li>
+<li>Map view showing technician locations</li>
+<li>AMC calendar with renewal dates</li>
+<li>Service checklist for technicians</li>
+<li>Customer feedback form</li>
+</ul>
+<hr>
+<h3>3.10 Inventory Management Module</h3>
+<p><strong>3.10.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Track solar components, supplies, and stock levels with reorder alerts</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-010</li>
+</ul>
+<p><strong>3.10.2 Functional Requirements</strong></p>
+<p>FR-010.1: The system shall maintain inventory of all solar components
+FR-010.2: The system shall track stock levels (in stock, reorder level, critical level)
+FR-010.3: The system shall send reorder alerts when stock falls below threshold
+FR-010.4: The system shall track inventory by location/warehouse
+FR-010.5: The system shall record stock movements (in, out, transfer)
+FR-010.6: The system shall integrate with project module for component allocation
+FR-010.7: The system shall track vendor-wise inventory
+FR-010.8: The system shall enable barcode/QR code scanning
+FR-010.9: The system shall generate stock reports
+FR-010.10: The system shall forecast inventory needs based on project pipeline</p>
+<p><strong>3.10.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stock receipt</td>
+<td>Update inventory levels</td>
+<td>Stock increased</td>
+</tr>
+<tr>
+<td>Project allocation</td>
+<td>Reduce stock and link to project</td>
+<td>Stock allocated</td>
+</tr>
+<tr>
+<td>Reorder level breach</td>
+<td>Generate alert and procurement request</td>
+<td>Reorder alert</td>
+</tr>
+</tbody></table>
+<p><strong>3.10.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Inventory dashboard with stock levels</li>
+<li>Color-coded alerts (critical=red, warning=yellow, ok=green)</li>
+<li>Stock movement log</li>
+<li>Barcode scanner integration</li>
+<li>Warehouse location map</li>
+<li>Stock transfer form</li>
+</ul>
+<hr>
+<h3>3.11 Invoicing &amp; Billing Module</h3>
+<p><strong>3.11.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Generate invoices, track payments, and manage billing</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-011</li>
+</ul>
+<p><strong>3.11.2 Functional Requirements</strong></p>
+<p>FR-011.1: The system shall generate invoices with GST calculations
+FR-011.2: The system shall support milestone-based invoicing
+FR-011.3: The system shall track payment status (Pending, Partial, Paid, Overdue)
+FR-011.4: The system shall send payment reminders automatically
+FR-011.5: The system shall record payment history
+FR-011.6: The system shall generate payment receipts
+FR-011.7: The system shall support multiple payment methods
+FR-011.8: The system shall integrate with payment gateways
+FR-011.9: The system shall generate financial reports (revenue, outstanding, collections)
+FR-011.10: The system shall enable invoice customization with company branding
+FR-011.11: The system shall add TDS, advance payment, and retention features
+FR-011.12: The system shall support proforma invoices
+FR-011.13: The system shall enable credit note generation</p>
+<p><strong>3.11.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Project milestone completion</td>
+<td>Generate invoice with calculated amounts</td>
+<td>Invoice created</td>
+</tr>
+<tr>
+<td>Payment received</td>
+<td>Update payment status and send receipt</td>
+<td>Receipt generated</td>
+</tr>
+<tr>
+<td>Due date passed</td>
+<td>Mark as overdue and send reminder</td>
+<td>Reminder sent</td>
+</tr>
+</tbody></table>
+<p><strong>3.11.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Invoice creation wizard</li>
+<li>Payment tracking dashboard</li>
+<li>Invoice preview with PDF download</li>
+<li>Payment history timeline</li>
+<li>Aging analysis chart</li>
+<li>Quick payment recording</li>
+</ul>
+<hr>
+<h3>3.12 Subsidy Management Module</h3>
+<p><strong>3.12.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Process government subsidy applications and loan management</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-012</li>
+</ul>
+<p><strong>3.12.2 Functional Requirements</strong></p>
+<p>FR-012.1: The system shall manage subsidy applications with required documents
+FR-012.2: The system shall track application status with government portals
+FR-012.3: The system shall maintain subsidy scheme database
+FR-012.4: The system shall calculate eligible subsidy amounts
+FR-012.5: The system shall generate subsidy application forms
+FR-012.6: The system shall track disbursement status
+FR-012.7: The system shall manage loan applications
+FR-012.8: The system shall link subsidies to projects
+FR-012.9: The system shall send application status updates to customers</p>
+<p><strong>3.12.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Project details</td>
+<td>Calculate eligible subsidy</td>
+<td>Subsidy amount</td>
+</tr>
+<tr>
+<td>Application submission</td>
+<td>Track with unique ID</td>
+<td>Application logged</td>
+</tr>
+<tr>
+<td>Status update from portal</td>
+<td>Update record and notify customer</td>
+<td>Status notification</td>
+</tr>
+</tbody></table>
+<p><strong>3.12.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Subsidy calculator</li>
+<li>Application form with document upload</li>
+<li>Status tracking timeline</li>
+<li>Scheme comparison table</li>
+<li>Eligibility checker</li>
+<li>Disbursement tracker</li>
+</ul>
+<hr>
+<h3>3.13 Performance Monitoring Module</h3>
+<p><strong>3.13.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Monitor installed solar system performance and energy generation</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-013</li>
+</ul>
+<p><strong>3.13.2 Functional Requirements</strong></p>
+<p>FR-013.1: The system shall integrate with solar RMS (Remote Monitoring Systems)
+FR-013.2: The system shall import real-time performance data (generation, voltage, current)
+FR-013.3: The system shall display system performance on single screen dashboard
+FR-013.4: The system shall show historical performance trends
+FR-013.5: The system shall detect and alert on performance anomalies
+FR-013.6: The system shall compare actual vs expected generation
+FR-013.7: The system shall calculate savings and ROI metrics
+FR-013.8: The system shall generate performance reports for customers
+FR-013.9: The system shall track environmental impact (CO2 reduction)
+FR-013.10: The system shall support multiple RMS vendors/protocols</p>
+<p><strong>3.13.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RMS API data</td>
+<td>Parse and store performance metrics</td>
+<td>Performance dashboard</td>
+</tr>
+<tr>
+<td>Anomaly detection</td>
+<td>Compare with expected values</td>
+<td>Alert notification</td>
+</tr>
+<tr>
+<td>Report request</td>
+<td>Aggregate data and generate PDF</td>
+<td>Performance report</td>
+</tr>
+</tbody></table>
+<p><strong>3.13.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Real-time performance dashboard with live updates</li>
+<li>Single screen plant monitoring view</li>
+<li>Performance graphs (generation, voltage, current over time)</li>
+<li>System health indicators</li>
+<li>Comparison charts (actual vs expected)</li>
+<li>Energy savings calculator</li>
+<li>Environmental impact visualization</li>
+</ul>
+<hr>
+<h3>3.14 Vendor Management Module</h3>
+<p><strong>3.14.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Manage supplier relationships and purchase orders</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-014</li>
+</ul>
+<p><strong>3.14.2 Functional Requirements</strong></p>
+<p>FR-014.1: The system shall maintain vendor database with contact details
+FR-014.2: The system shall track vendor performance ratings
+FR-014.3: The system shall create and manage purchase orders
+FR-014.4: The system shall track PO status (Draft, Sent, Acknowledged, Delivered, Closed)
+FR-014.5: The system shall link vendors to inventory items
+FR-014.6: The system shall compare vendor pricing
+FR-014.7: The system shall track vendor payment terms
+FR-014.8: The system shall generate vendor performance reports</p>
+<p><strong>3.14.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vendor registration</td>
+<td>Validate and store details</td>
+<td>New vendor created</td>
+</tr>
+<tr>
+<td>Purchase order creation</td>
+<td>Generate PO and send to vendor</td>
+<td>PO sent</td>
+</tr>
+<tr>
+<td>Delivery confirmation</td>
+<td>Update PO status and inventory</td>
+<td>Stock received</td>
+</tr>
+</tbody></table>
+<p><strong>3.14.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Vendor directory with search</li>
+<li>PO creation form with item selection</li>
+<li>Vendor comparison table</li>
+<li>Rating and review system</li>
+<li>PO tracking dashboard</li>
+<li>Payment terms calendar</li>
+</ul>
+<hr>
+<h3>3.15 User Management Module</h3>
+<p><strong>3.15.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Manage system users with role-based access control and SSO</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-015</li>
+</ul>
+<p><strong>3.15.2 Functional Requirements</strong></p>
+<p>FR-015.1: The system shall implement role-based access control (RBAC)
+FR-015.2: The system shall define roles (Admin, Sales, Manager, Engineer, Service, Finance)
+FR-015.3: The system shall assign permissions to roles
+FR-015.4: The system shall enable single sign-on (SSO) - Star Topology implementation
+FR-015.5: The system shall prevent multiple simultaneous logins per user
+FR-015.6: The system shall track user activity logs
+FR-015.7: The system shall enable/disable user accounts
+FR-015.8: The system shall enforce password policies
+FR-015.9: The system shall provide user profile management
+FR-015.10: The system shall track user session information</p>
+<p><strong>3.15.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>User login</td>
+<td>Authenticate and create session</td>
+<td>User logged in</td>
+</tr>
+<tr>
+<td>Role assignment</td>
+<td>Update user permissions</td>
+<td>Access rights updated</td>
+</tr>
+<tr>
+<td>Duplicate login attempt</td>
+<td>Block new session and alert</td>
+<td>Login prevented</td>
+</tr>
+<tr>
+<td>Activity action</td>
+<td>Log action with timestamp</td>
+<td>Audit trail entry</td>
+</tr>
+</tbody></table>
+<p><strong>3.15.4 UI/UX Requirements</strong></p>
+<ul>
+<li>User directory with role filters</li>
+<li>User creation form with role assignment</li>
+<li>Permission matrix for role configuration</li>
+<li>Activity log viewer</li>
+<li>Session management dashboard</li>
+<li>Profile edit page</li>
+</ul>
+<hr>
+<h3>3.16 Analytics &amp; Reporting Module</h3>
+<p><strong>3.16.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Business intelligence dashboards and comprehensive reporting</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-016</li>
+</ul>
+<p><strong>3.16.2 Functional Requirements</strong></p>
+<p>FR-016.1: The system shall provide pre-built reports (sales, revenue, performance, inventory)
+FR-016.2: The system shall enable custom report creation
+FR-016.3: The system shall support data export (PDF, Excel, CSV)
+FR-016.4: The system shall provide data visualization (charts, graphs, heatmaps)
+FR-016.5: The system shall enable scheduled report generation
+FR-016.6: The system shall send reports via email automatically
+FR-016.7: The system shall provide drill-down analysis
+FR-016.8: The system shall track KPIs and show trend analysis
+FR-016.9: The system shall enable report sharing with stakeholders
+FR-016.10: The system shall provide comparison reports (month-over-month, year-over-year)
+FR-016.11: The system shall generate daily performance reports for users
+FR-016.12: The system shall apply filters across all report dimensions</p>
+<p><strong>3.16.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Report parameters (date range, filters)</td>
+<td>Query database and aggregate data</td>
+<td>Generated report</td>
+</tr>
+<tr>
+<td>Schedule configuration</td>
+<td>Set up automated report generation</td>
+<td>Scheduled report</td>
+</tr>
+<tr>
+<td>Export request</td>
+<td>Format data and generate file</td>
+<td>Downloadable file</td>
+</tr>
+</tbody></table>
+<p><strong>3.16.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Report gallery with categories</li>
+<li>Interactive dashboard builder</li>
+<li>Filter panel with multiple dimensions</li>
+<li>Chart type selector (bar, line, pie, area)</li>
+<li>Export options menu</li>
+<li>Schedule configuration dialog</li>
+<li>Report preview with pagination</li>
+</ul>
+<hr>
+<h3>3.17 Expense Tracking Module</h3>
+<p><strong>3.17.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Monitor project costs, budgets, and expense management</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-017</li>
+</ul>
+<p><strong>3.17.2 Functional Requirements</strong></p>
+<p>FR-017.1: The system shall track project-wise expenses
+FR-017.2: The system shall categorize expenses (Material, Labor, Transport, Miscellaneous)
+FR-017.3: The system shall compare actual vs budgeted expenses
+FR-017.4: The system shall enable expense approval workflow
+FR-017.5: The system shall attach receipts/bills to expenses
+FR-017.6: The system shall track expense status (Pending, Approved, Rejected, Paid)
+FR-017.7: The system shall generate expense reports by project/category/period
+FR-017.8: The system shall alert on budget overruns
+FR-017.9: The system shall track reimbursements</p>
+<p><strong>3.17.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Expense entry with receipt</td>
+<td>Validate and create record</td>
+<td>Expense logged</td>
+</tr>
+<tr>
+<td>Approval action</td>
+<td>Update status and notify</td>
+<td>Expense approved/rejected</td>
+</tr>
+<tr>
+<td>Budget threshold breach</td>
+<td>Generate alert</td>
+<td>Budget alert</td>
+</tr>
+</tbody></table>
+<p><strong>3.17.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Expense entry form with receipt upload</li>
+<li>Budget vs actual comparison chart</li>
+<li>Approval workflow interface</li>
+<li>Expense categorization selector</li>
+<li>Receipt viewer</li>
+<li>Project expense timeline</li>
+</ul>
+<hr>
+<h3>3.18 Customer Feedback Module</h3>
+<p><strong>3.18.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Collect and analyze customer satisfaction and feedback</li>
+<li><strong>Priority:</strong> Low</li>
+<li><strong>Module ID:</strong> MOD-018</li>
+</ul>
+<p><strong>3.18.2 Functional Requirements</strong></p>
+<p>FR-018.1: The system shall send feedback surveys after service completion
+FR-018.2: The system shall support multiple question types (rating, text, multiple choice)
+FR-018.3: The system shall collect Net Promoter Score (NPS)
+FR-018.4: The system shall analyze feedback sentiment
+FR-018.5: The system shall generate feedback reports
+FR-018.6: The system shall link feedback to projects/tickets
+FR-018.7: The system shall integrate with Google Reviews
+FR-018.8: The system shall track feedback trends over time
+FR-018.9: The system shall alert on negative feedback</p>
+<p><strong>3.18.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Survey completion</td>
+<td>Store responses and calculate scores</td>
+<td>Feedback recorded</td>
+</tr>
+<tr>
+<td>Negative feedback</td>
+<td>Trigger alert to management</td>
+<td>Alert notification</td>
+</tr>
+<tr>
+<td>Analysis request</td>
+<td>Aggregate and analyze data</td>
+<td>Feedback report</td>
+</tr>
+</tbody></table>
+<p><strong>3.18.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Survey builder with question types</li>
+<li>Mobile-friendly survey form</li>
+<li>Feedback dashboard with NPS score</li>
+<li>Sentiment analysis visualization</li>
+<li>Review integration display</li>
+<li>Alert configuration panel</li>
+</ul>
+<hr>
+<h3>3.19 Settings &amp; Configuration Module</h3>
+<p><strong>3.19.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> System preferences and customization options</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-019</li>
+</ul>
+<p><strong>3.19.2 Functional Requirements</strong></p>
+<p>FR-019.1: The system shall enable company profile configuration
+FR-019.2: The system shall allow logo and branding customization
+FR-019.3: The system shall configure notification preferences
+FR-019.4: The system shall set up email templates
+FR-019.5: The system shall configure integrations (WhatsApp, Email, RMS, Dialer)
+FR-019.6: The system shall manage system-wide defaults
+FR-019.7: The system shall configure workflow automations
+FR-019.8: The system shall set up tax rates and pricing rules
+FR-019.9: The system shall enable/disable modules</p>
+<p><strong>3.19.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Configuration changes</td>
+<td>Validate and save settings</td>
+<td>Settings updated</td>
+</tr>
+<tr>
+<td>Integration credentials</td>
+<td>Test connection and save</td>
+<td>Integration active</td>
+</tr>
+<tr>
+<td>Template modification</td>
+<td>Save template with variables</td>
+<td>Template updated</td>
+</tr>
+</tbody></table>
+<p><strong>3.19.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Settings navigation with categories</li>
+<li>Company profile editor</li>
+<li>Integration setup wizards</li>
+<li>Template editor with preview</li>
+<li>Notification toggle switches</li>
+<li>Automation rule builder</li>
+</ul>
+<hr>
+<h3>3.20 Plant Monitoring Dashboard (NEW)</h3>
+<p><strong>3.20.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Centralized single-screen view for monitoring all solar plant installations</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-020</li>
+</ul>
+<p><strong>3.20.2 Functional Requirements</strong></p>
+<p>FR-020.1: The system shall display all active plants on a single dashboard
+FR-020.2: The system shall show real-time generation data for each plant
+FR-020.3: The system shall display plant health status with color indicators
+FR-020.4: The system shall integrate with multiple RMS systems (vendor-agnostic)
+FR-020.5: The system shall show geographical distribution on map view
+FR-020.6: The system shall apply filters (location, capacity, status, customer)
+FR-020.7: The system shall enable drill-down to individual plant details
+FR-020.8: The system shall display aggregated metrics (total capacity, total generation)
+FR-020.9: The system shall show alerts and warnings for all plants
+FR-020.10: The system shall refresh data automatically every 30 seconds</p>
+<p><strong>3.20.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RMS data from all plants</td>
+<td>Aggregate and normalize data</td>
+<td>Unified dashboard</td>
+</tr>
+<tr>
+<td>Filter selection</td>
+<td>Apply filters to plant list</td>
+<td>Filtered view</td>
+</tr>
+<tr>
+<td>Plant selection</td>
+<td>Navigate to detailed view</td>
+<td>Plant detail page</td>
+</tr>
+</tbody></table>
+<p><strong>3.20.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Grid layout showing all plants as cards</li>
+<li>Map view with plant locations</li>
+<li>Real-time status indicators (green=healthy, red=alert, white=offline)</li>
+<li>Filter panel with multiple criteria</li>
+<li>Quick stats summary at top</li>
+<li>Auto-refresh indicator</li>
+<li>Click-through to detailed plant view</li>
+</ul>
+<hr>
+<h3>3.21 Live Location Tracking (NEW)</h3>
+<p><strong>3.21.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Real-time GPS tracking of field personnel (service technicians, survey engineers)</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-021</li>
+</ul>
+<p><strong>3.21.2 Functional Requirements</strong></p>
+<p>FR-021.1: The system shall track GPS location of field personnel in real-time
+FR-021.2: The system shall display personnel locations on map
+FR-021.3: The system shall track movement history and routes
+FR-021.4: The system shall calculate estimated arrival time to destination
+FR-021.5: The system shall enable location sharing with customers
+FR-021.6: The system shall track check-in/check-out at service locations
+FR-021.7: The system shall work on mobile devices with GPS
+FR-021.8: The system shall track distance traveled for expense calculation
+FR-021.9: The system shall respect privacy settings (tracking only during work hours)
+FR-021.10: The system shall work offline and sync when connection available</p>
+<p><strong>3.21.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GPS coordinates from mobile</td>
+<td>Store location with timestamp</td>
+<td>Location updated on map</td>
+</tr>
+<tr>
+<td>Route start</td>
+<td>Begin tracking and logging</td>
+<td>Route tracking active</td>
+</tr>
+<tr>
+<td>Destination</td>
+<td>Calculate ETA and distance</td>
+<td>ETA displayed</td>
+</tr>
+<tr>
+<td>Customer request</td>
+<td>Share live location link</td>
+<td>Location shared</td>
+</tr>
+</tbody></table>
+<p><strong>3.21.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Real-time map with personnel markers</li>
+<li>Route visualization with breadcrumbs</li>
+<li>ETA calculation and display</li>
+<li>Check-in/check-out buttons for mobile</li>
+<li>Distance and time tracking</li>
+<li>Privacy toggle for personnel</li>
+<li>Customer-facing location sharing page</li>
+<li>Offline mode indicator</li>
+</ul>
+<hr>
+<h3>3.22 Chatbot Integration (NEW)</h3>
+<p><strong>3.22.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> AI-powered chatbot for flexible customer and client conversations</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-022</li>
+</ul>
+<p><strong>3.22.2 Functional Requirements</strong></p>
+<p>FR-022.1: The system shall provide chatbot widget on website/portal
+FR-022.2: The system shall handle common queries automatically (FAQs, status, pricing)
+FR-022.3: The system shall escalate complex queries to human agents
+FR-022.4: The system shall integrate with lead module to capture inquiries
+FR-022.5: The system shall support multi-language conversations
+FR-022.6: The system shall learn from interactions (machine learning)
+FR-022.7: The system shall provide conversation analytics
+FR-022.8: The system shall work 24/7 for customer support
+FR-022.9: The system shall integrate with WhatsApp for chat
+FR-022.10: The system shall maintain conversation context and history</p>
+<p><strong>3.22.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer query</td>
+<td>Natural language processing</td>
+<td>Chatbot response</td>
+</tr>
+<tr>
+<td>Complex query</td>
+<td>Analyze and escalate</td>
+<td>Human agent notification</td>
+</tr>
+<tr>
+<td>Lead inquiry</td>
+<td>Extract information and create lead</td>
+<td>Lead captured</td>
+</tr>
+<tr>
+<td>Conversation data</td>
+<td>Analyze patterns and improve</td>
+<td>Chatbot training</td>
+</tr>
+</tbody></table>
+<p><strong>3.22.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Chat widget with minimize/maximize</li>
+<li>Conversation interface with typing indicators</li>
+<li>Quick reply buttons for common actions</li>
+<li>Agent handoff interface</li>
+<li>Chatbot configuration dashboard</li>
+<li>Analytics dashboard for bot performance</li>
+<li>Multi-language selector</li>
+<li>Chat history viewer</li>
+</ul>
+<hr>
+<h3>3.23 Data Import/Export System (NEW)</h3>
+<p><strong>3.23.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Import and export data from external CRM systems and legacy software</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-023</li>
+</ul>
+<p><strong>3.23.2 Functional Requirements</strong></p>
+<p>FR-023.1: The system shall import lead data from CSV/Excel files
+FR-023.2: The system shall export lead data to CSV/Excel/PDF formats
+FR-023.3: The system shall map fields from external systems during import
+FR-023.4: The system shall validate imported data and show errors
+FR-023.5: The system shall import historical data with dates preserved
+FR-023.6: The system shall prevent duplicate entries during import
+FR-023.7: The system shall support bulk import for all major modules
+FR-023.8: The system shall provide import templates for various CRM systems
+FR-023.9: The system shall log all import/export operations
+FR-023.10: The system shall enable scheduled exports
+FR-023.11: The system shall support API-based integration with other CRMs</p>
+<p><strong>3.23.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Import file (CSV/Excel)</td>
+<td>Parse, validate, and map fields</td>
+<td>Data imported</td>
+</tr>
+<tr>
+<td>Field mapping configuration</td>
+<td>Save mapping template</td>
+<td>Template saved</td>
+</tr>
+<tr>
+<td>Export request</td>
+<td>Query data and format</td>
+<td>Export file generated</td>
+</tr>
+<tr>
+<td>API sync request</td>
+<td>Fetch data from external system</td>
+<td>Data synchronized</td>
+</tr>
+</tbody></table>
+<p><strong>3.23.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Import wizard with step-by-step process</li>
+<li>Field mapping interface (drag-and-drop)</li>
+<li>Data preview before import</li>
+<li>Error report with line numbers</li>
+<li>Import history log</li>
+<li>Export format selector</li>
+<li>Template library for common CRM systems</li>
+<li>Progress indicator for large imports</li>
+</ul>
+<hr>
+<h3>3.24 Google Reviews Integration (NEW)</h3>
+<p><strong>3.24.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Integrate Google Reviews API to display and manage customer reviews</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-024</li>
+</ul>
+<p><strong>3.24.2 Functional Requirements</strong></p>
+<p>FR-024.1: The system shall fetch reviews from Google My Business via API
+FR-024.2: The system shall display reviews in feedback module
+FR-024.3: The system shall show average rating and review count
+FR-024.4: The system shall enable responding to reviews from CRM
+FR-024.5: The system shall send notifications for new reviews
+FR-024.6: The system shall link reviews to customer projects
+FR-024.7: The system shall analyze review sentiment
+FR-024.8: The system shall request reviews from satisfied customers
+FR-024.9: The system shall display reviews on customer-facing portal</p>
+<p><strong>3.24.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google API credentials</td>
+<td>Authenticate and fetch reviews</td>
+<td>Reviews imported</td>
+</tr>
+<tr>
+<td>New review notification</td>
+<td>Store and alert management</td>
+<td>Notification sent</td>
+</tr>
+<tr>
+<td>Review response</td>
+<td>Post reply via API</td>
+<td>Response published</td>
+</tr>
+<tr>
+<td>Review request</td>
+<td>Send email/SMS to customer</td>
+<td>Request sent</td>
+</tr>
+</tbody></table>
+<p><strong>3.24.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Google Reviews dashboard widget</li>
+<li>Review list with ratings</li>
+<li>Response composer</li>
+<li>Review request automation</li>
+<li>Rating trend chart</li>
+<li>Sentiment analysis visualization</li>
+<li>Integration setup wizard</li>
+</ul>
+<hr>
+<h3>3.25 Enhanced Invoicing Features (NEW)</h3>
+<p><strong>3.25.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Extended invoicing capabilities with advanced features</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-025</li>
+</ul>
+<p><strong>3.25.2 Functional Requirements</strong></p>
+<p>FR-025.1: The system shall support progressive/milestone billing
+FR-025.2: The system shall handle advance payment adjustment
+FR-025.3: The system shall calculate and apply TDS (Tax Deducted at Source)
+FR-025.4: The system shall manage retention money
+FR-025.5: The system shall support multiple tax rates per invoice
+FR-025.6: The system shall enable recurring invoices for AMC
+FR-025.7: The system shall generate e-invoices (GST compliance)
+FR-025.8: The system shall support multi-currency invoicing
+FR-025.9: The system shall enable invoice disputes and resolution tracking
+FR-025.10: The system shall integrate with accounting software</p>
+<p><strong>3.25.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Milestone completion</td>
+<td>Calculate amount with TDS and retention</td>
+<td>Invoice generated</td>
+</tr>
+<tr>
+<td>Advance payment</td>
+<td>Adjust in final invoice</td>
+<td>Final amount calculated</td>
+</tr>
+<tr>
+<td>Recurring schedule</td>
+<td>Auto-generate invoices</td>
+<td>Invoices created</td>
+</tr>
+</tbody></table>
+<p><strong>3.25.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Milestone billing wizard</li>
+<li>TDS calculator</li>
+<li>Advance payment tracker</li>
+<li>Retention money dashboard</li>
+<li>Recurring invoice scheduler</li>
+<li>E-invoice generator</li>
+<li>Multi-currency selector</li>
+<li>Dispute resolution tracker</li>
+</ul>
+<hr>
+<h3>3.26 Advanced Filtering System (NEW)</h3>
+<p><strong>3.26.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Comprehensive filtering across all modules to monitor activities</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-026</li>
+</ul>
+<p><strong>3.26.2 Functional Requirements</strong></p>
+<p>FR-026.1: The system shall provide multi-criteria filters for all list views
+FR-026.2: The system shall save filter presets for quick access
+FR-026.3: The system shall enable date range filtering
+FR-026.4: The system shall support text search with autocomplete
+FR-026.5: The system shall enable status-based filtering
+FR-026.6: The system shall support user/team filtering
+FR-026.7: The system shall enable location-based filtering
+FR-026.8: The system shall support value range filters (amount, capacity)
+FR-026.9: The system shall enable combining multiple filters (AND/OR logic)
+FR-026.10: The system shall show active filter indicators
+FR-026.11: The system shall export filtered data</p>
+<p><strong>3.26.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Filter criteria</td>
+<td>Apply to database query</td>
+<td>Filtered results</td>
+</tr>
+<tr>
+<td>Filter preset save</td>
+<td>Store configuration</td>
+<td>Preset saved</td>
+</tr>
+<tr>
+<td>Combined filters</td>
+<td>Build complex query</td>
+<td>Advanced filtered view</td>
+</tr>
+</tbody></table>
+<p><strong>3.26.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Filter panel with collapsible sections</li>
+<li>Date picker for range selection</li>
+<li>Multi-select dropdowns</li>
+<li>Search box with suggestions</li>
+<li>Active filter chips with remove option</li>
+<li>Preset selector dropdown</li>
+<li>Clear all filters button</li>
+<li>Filter count badge</li>
+</ul>
+<hr>
+<h3>3.27 Email Lead Capture (NEW)</h3>
+<p><strong>3.27.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Automatically capture and store leads from incoming emails</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-027</li>
+</ul>
+<p><strong>3.27.2 Functional Requirements</strong></p>
+<p>FR-027.1: The system shall monitor designated email inbox (<a href="mailto:leads@company.com">leads@company.com</a>)
+FR-027.2: The system shall parse incoming emails and extract lead information
+FR-027.3: The system shall create lead records automatically from emails
+FR-027.4: The system shall attach original email to lead record
+FR-027.5: The system shall extract contact details (name, phone, email)
+FR-027.6: The system shall identify email subject as lead inquiry topic
+FR-027.7: The system shall auto-assign leads based on rules (territory, product type)
+FR-027.8: The system shall handle attachments (electricity bills, documents)
+FR-027.9: The system shall prevent duplicate lead creation from same email
+FR-027.10: The system shall notify assigned sales executive</p>
+<p><strong>3.27.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Incoming email</td>
+<td>Parse content and extract data</td>
+<td>Lead created</td>
+</tr>
+<tr>
+<td>Email attachment</td>
+<td>Store file in documents</td>
+<td>Document attached to lead</td>
+</tr>
+<tr>
+<td>Duplicate check</td>
+<td>Compare with existing leads</td>
+<td>Merge or skip</td>
+</tr>
+</tbody></table>
+<p><strong>3.27.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Email integration setup wizard</li>
+<li>Email parsing rules configuration</li>
+<li>Lead auto-assignment rules builder</li>
+<li>Email-to-lead preview</li>
+<li>Duplicate detection settings</li>
+<li>Email attachment viewer in lead record</li>
+</ul>
+<hr>
+<h3>3.28 Lead Transfer with Access Control (NEW)</h3>
+<p><strong>3.28.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Transfer leads between sales executives with privacy and access control</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-028</li>
+</ul>
+<p><strong>3.28.2 Functional Requirements</strong></p>
+<p>FR-028.1: The system shall enable lead transfer from one executive to another
+FR-028.2: The system shall restrict lead visibility to assigned executive only
+FR-028.3: The system shall maintain transfer history with reasons
+FR-028.4: The system shall require approval for lead transfers (optional)
+FR-028.5: The system shall notify both parties of transfer
+FR-028.6: The system shall preserve all lead history during transfer
+FR-028.7: The system shall enable bulk lead transfer
+FR-028.8: The system shall allow temporary lead sharing (view-only access)
+FR-028.9: The system shall track lead ownership timeline</p>
+<p><strong>3.28.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Transfer request</td>
+<td>Update assignment and notify users</td>
+<td>Lead transferred</td>
+</tr>
+<tr>
+<td>Approval required</td>
+<td>Queue for manager approval</td>
+<td>Pending approval</td>
+</tr>
+<tr>
+<td>Access grant</td>
+<td>Update permissions</td>
+<td>Access granted</td>
+</tr>
+</tbody></table>
+<p><strong>3.28.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Lead transfer dialog with reason selection</li>
+<li>Executive selector with search</li>
+<li>Approval workflow interface</li>
+<li>Transfer history timeline</li>
+<li>Access control settings</li>
+<li>Bulk transfer checkbox selector</li>
+<li>Temporary sharing permission toggle</li>
+</ul>
+<hr>
+<h3>3.29 Auto-Dialer Integration (NEW)</h3>
+<p><strong>3.29.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Direct calling from lead module with automatic dialer integration</li>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Module ID:</strong> MOD-029</li>
+</ul>
+<p><strong>3.29.2 Functional Requirements</strong></p>
+<p>FR-029.1: The system shall integrate with VoIP/dialer systems
+FR-029.2: The system shall enable click-to-call from lead/contact records
+FR-029.3: The system shall log all calls automatically
+FR-029.4: The system shall record call duration and outcome
+FR-029.5: The system shall enable call recording (with consent)
+FR-029.6: The system shall display call history in lead timeline
+FR-029.7: The system shall support call notes and follow-up scheduling
+FR-029.8: The system shall provide call analytics (answer rate, duration)
+FR-029.9: The system shall enable conference calling
+FR-029.10: The system shall work with mobile and desktop</p>
+<p><strong>3.29.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Click-to-call button</td>
+<td>Initiate call via dialer API</td>
+<td>Call connected</td>
+</tr>
+<tr>
+<td>Call completion</td>
+<td>Log details and prompt for notes</td>
+<td>Call logged</td>
+</tr>
+<tr>
+<td>Call recording</td>
+<td>Store audio file</td>
+<td>Recording attached</td>
+</tr>
+</tbody></table>
+<p><strong>3.29.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Call button in lead/contact cards</li>
+<li>In-app dialer interface</li>
+<li>Call notes popup after call</li>
+<li>Call history log with playback</li>
+<li>Analytics dashboard for calls</li>
+<li>Conference call interface</li>
+<li>Call outcome selector (connected, voicemail, busy)</li>
+</ul>
+<hr>
+<h3>3.30 Solar RMS Data Integration (NEW)</h3>
+<p><strong>3.30.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Import real-time data from solar panel monitoring systems into CRM</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-030</li>
+</ul>
+<p><strong>3.30.2 Functional Requirements</strong></p>
+<p>FR-030.1: The system shall integrate with multiple RMS vendor APIs
+FR-030.2: The system shall import real-time generation data
+FR-030.3: The system shall import system health parameters (voltage, current, temperature)
+FR-030.4: The system shall normalize data from different RMS formats
+FR-030.5: The system shall link RMS data to projects and customers
+FR-030.6: The system shall store historical performance data
+FR-030.7: The system shall trigger alerts on anomalies
+FR-030.8: The system shall synchronize data every 5-15 minutes
+FR-030.9: The system shall handle RMS connection failures gracefully
+FR-030.10: The system shall provide RMS integration configuration interface</p>
+<p><strong>3.30.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RMS API credentials</td>
+<td>Authenticate and establish connection</td>
+<td>RMS connected</td>
+</tr>
+<tr>
+<td>Real-time data push</td>
+<td>Normalize and store</td>
+<td>Data updated</td>
+</tr>
+<tr>
+<td>Data anomaly</td>
+<td>Generate alert and ticket</td>
+<td>Alert triggered</td>
+</tr>
+</tbody></table>
+<p><strong>3.30.4 UI/UX Requirements</strong></p>
+<ul>
+<li>RMS integration setup wizard</li>
+<li>Multi-vendor connection manager</li>
+<li>Data synchronization status</li>
+<li>Real-time data visualization</li>
+<li>Historical data charts</li>
+<li>Alert configuration panel</li>
+<li>Connection health monitor</li>
+</ul>
+<hr>
+<h2 id="4-external-interface-requirements">4. External Interface Requirements</h2>
+<h3>4.1 User Interfaces</h3>
+<p><strong>4.1.1 General UI Characteristics</strong></p>
+<ul>
+<li><strong>Design System:</strong> Modern, clean interface using Shadcn UI components</li>
+<li><strong>Color Scheme:</strong> <ul>
+<li>Primary: Solid green (#22c55e or similar green shades)</li>
+<li>Secondary: White (#ffffff)</li>
+<li>No gradients allowed - only solid colors</li>
+<li>Accent: Dark green for hover states</li>
+<li>Status indicators: Green (success/active), Red (error/alert), Yellow (warning), White (neutral)</li>
+</ul>
+</li>
+<li><strong>Typography:</strong> Clean sans-serif fonts, proper hierarchy</li>
+<li><strong>Responsiveness:</strong> Mobile-first design, works on phones, tablets, desktops</li>
+<li><strong>Dark Mode:</strong> Full dark mode support with appropriate color adjustments</li>
+<li><strong>Accessibility:</strong> WCAG 2.1 Level A compliance minimum</li>
+</ul>
+<p><strong>4.1.2 Screen Layouts</strong></p>
+<ol>
+<li><p><strong>Desktop Layout (1920x1080)</strong></p>
+<ul>
+<li>Collapsible sidebar (256px width when open, 48px when collapsed)</li>
+<li>Top header bar (64px height) with search, notifications, profile</li>
+<li>Main content area with padding and max-width constraints</li>
+<li>Fixed header and sidebar, scrollable content</li>
+</ul>
+</li>
+<li><p><strong>Tablet Layout (768x1024)</strong></p>
+<ul>
+<li>Collapsible sidebar (hidden by default)</li>
+<li>Touch-friendly buttons and controls</li>
+<li>Adjusted spacing and font sizes</li>
+<li>Optimized charts and tables</li>
+</ul>
+</li>
+<li><p><strong>Mobile Layout (375x667)</strong></p>
+<ul>
+<li>Full-width content</li>
+<li>Hamburger menu for navigation</li>
+<li>Bottom navigation for key actions</li>
+<li>Simplified forms with mobile-optimized inputs</li>
+<li>Vertical stacking of elements</li>
+</ul>
+</li>
+</ol>
+<p><strong>4.1.3 Key UI Components</strong></p>
+<ul>
+<li>Dashboard cards with statistics and charts</li>
+<li>Data tables with sorting, filtering, and pagination</li>
+<li>Forms with validation and error messaging</li>
+<li>Modal dialogs for actions and details</li>
+<li>Toast notifications for feedback</li>
+<li>File upload with drag-and-drop</li>
+<li>Date/time pickers</li>
+<li>Map views for location features</li>
+<li>Kanban boards for project/task management</li>
+<li>Chat interfaces for messaging</li>
+<li>Calendar views for scheduling</li>
+</ul>
+<h3>4.2 Hardware Interfaces</h3>
+<p><strong>4.2.1 Mobile Device Hardware</strong></p>
+<ul>
+<li><p><strong>GPS/Location Services:</strong> </p>
+<ul>
+<li>Interface with device GPS for location tracking</li>
+<li>Accuracy: Minimum 10-meter precision</li>
+<li>Updates: Every 30 seconds during active tracking</li>
+</ul>
+</li>
+<li><p><strong>Camera:</strong></p>
+<ul>
+<li>Access device camera for document capture</li>
+<li>Support photo upload from gallery</li>
+<li>Image compression before upload</li>
+</ul>
+</li>
+<li><p><strong>Barcode/QR Scanner:</strong></p>
+<ul>
+<li>Integrate with device camera for inventory scanning</li>
+<li>Support standard barcode formats (EAN, UPC, Code 128)</li>
+</ul>
+</li>
+</ul>
+<p><strong>4.2.2 Server Hardware</strong></p>
+<ul>
+<li><strong>Storage:</strong> SSD for database and file storage</li>
+<li><strong>Network:</strong> Gigabit Ethernet for server connectivity</li>
+<li><strong>Backup:</strong> External storage for automated backups</li>
+</ul>
+<h3>4.3 Software Interfaces</h3>
+<p><strong>4.3.1 Database Interface</strong></p>
+<ul>
+<li><strong>Database:</strong> MongoDB 14+</li>
+<li><strong>Connection:</strong> TCP/IP connection using pg driver</li>
+<li><strong>ORM:</strong> Drizzle ORM for type-safe database operations</li>
+<li><strong>Connection Pooling:</strong> Max 20 connections</li>
+</ul>
+<p><strong>4.3.2 External APIs</strong></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Purpose</th>
+<th>Protocol</th>
+<th>Authentication</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Google Reviews API</td>
+<td>Fetch and manage reviews</td>
+<td>REST/HTTPS</td>
+<td>OAuth 2.0</td>
+</tr>
+<tr>
+<td>WhatsApp Business API</td>
+<td>Send/receive messages</td>
+<td>REST/HTTPS</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td>Email (SMTP/IMAP)</td>
+<td>Send/receive emails</td>
+<td>SMTP/IMAP</td>
+<td>Username/Password</td>
+</tr>
+<tr>
+<td>Solar RMS APIs</td>
+<td>Fetch plant performance data</td>
+<td>REST/HTTPS/MQTT</td>
+<td>Vendor-specific</td>
+</tr>
+<tr>
+<td>GPS/Maps API</td>
+<td>Location services</td>
+<td>REST/HTTPS</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td>Dialer API</td>
+<td>VoIP calling</td>
+<td>REST/WebRTC</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td>Payment Gateway</td>
+<td>Invoice payments</td>
+<td>REST/HTTPS</td>
+<td>API Key + Secret</td>
+</tr>
+<tr>
+<td>SMS Gateway</td>
+<td>Send SMS</td>
+<td>REST/HTTPS</td>
+<td>API Key</td>
+</tr>
+</tbody></table>
+<p><strong>4.3.3 File Formats</strong></p>
+<ul>
+<li><strong>Import:</strong> CSV, Excel (.xlsx, .xls), JSON</li>
+<li><strong>Export:</strong> CSV, Excel (.xlsx), PDF, JSON</li>
+<li><strong>Documents:</strong> PDF, Word (.docx), Images (JPEG, PNG), CAD (.dwg)</li>
+</ul>
+<h3>4.4 Communication Interfaces</h3>
+<p><strong>4.4.1 Network Protocols</strong></p>
+<ul>
+<li><strong>HTTP/HTTPS:</strong> Primary communication protocol (TLS 1.2+)</li>
+<li><strong>WebSocket:</strong> Real-time updates for dashboard and chat</li>
+<li><strong>REST API:</strong> Standard RESTful API architecture</li>
+<li><strong>SMTP:</strong> Email sending (Port 587 with STARTTLS)</li>
+<li><strong>IMAP:</strong> Email receiving (Port 993 with SSL)</li>
+</ul>
+<p><strong>4.4.2 Data Formats</strong></p>
+<ul>
+<li><strong>Request/Response:</strong> JSON format</li>
+<li><strong>File Upload:</strong> Multipart/form-data</li>
+<li><strong>Real-time:</strong> WebSocket JSON messages</li>
+<li><strong>Authentication:</strong> JWT tokens in Authorization header</li>
+</ul>
+<p><strong>4.4.3 API Endpoints Structure</strong></p>
+<pre><code>/api/leads - Lead management endpoints
+/api/projects - Project management endpoints
+/api/surveys - Site survey endpoints
+/api/communications - Messaging endpoints
+/api/tasks - Task management endpoints
+/api/documents - Document management endpoints
+/api/tickets - Service ticket endpoints
+/api/inventory - Inventory management endpoints
+/api/invoices - Invoicing endpoints
+/api/subsidies - Subsidy management endpoints
+/api/performance - Performance data endpoints
+/api/vendors - Vendor management endpoints
+/api/users - User management endpoints
+/api/analytics - Analytics and reporting endpoints
+/api/expenses - Expense tracking endpoints
+/api/feedback - Customer feedback endpoints
+/api/settings - System configuration endpoints
+/api/plants - Plant monitoring endpoints
+/api/location - GPS tracking endpoints
+/api/chatbot - Chatbot endpoints
+/api/import - Data import endpoints
+/api/export - Data export endpoints
+/api/reviews - Google Reviews endpoints
+/api/dialer - Auto-dialer endpoints
+/api/rms - RMS integration endpoints
+</code></pre>
+<hr>
+<h2 id="5-non-functional-requirements">5. Non-Functional Requirements</h2>
+<h3>5.1 Performance Requirements</h3>
+<p><strong>5.1.1 Response Time</strong></p>
+<ul>
+<li>Page load time: &lt; 3 seconds for initial load</li>
+<li>API response time: &lt; 500ms for 95% of requests</li>
+<li>Database query time: &lt; 200ms for standard queries</li>
+<li>Real-time updates: &lt; 2 seconds delay</li>
+<li>File upload: Support files up to 50MB</li>
+<li>Report generation: &lt; 10 seconds for standard reports</li>
+<li>Map loading: &lt; 2 seconds for location display</li>
+</ul>
+<p><strong>5.1.2 Throughput</strong></p>
+<ul>
+<li>Concurrent users: Minimum 100 simultaneous users</li>
+<li>API requests: 1000 requests/minute sustained</li>
+<li>Database transactions: 500 transactions/second</li>
+<li>WebSocket connections: 200 concurrent connections</li>
+<li>File storage: 1TB total storage capacity</li>
+</ul>
+<p><strong>5.1.3 Resource Utilization</strong></p>
+<ul>
+<li>Server CPU: &lt; 70% average utilization</li>
+<li>Server memory: &lt; 80% utilization</li>
+<li>Database size: Optimized with indexing</li>
+<li>Network bandwidth: &lt; 100 Mbps average</li>
+</ul>
+<h3>5.2 Security Requirements</h3>
+<p><strong>5.2.1 Authentication</strong></p>
+<ul>
+<li>Password complexity: Minimum 8 characters with mixed case and numbers</li>
+<li>Password hashing: bcrypt with salt</li>
+<li>Session management: Secure session tokens with timeout</li>
+<li>Single sign-on (SSO): Prevent multiple simultaneous logins</li>
+<li>Password reset: Secure token-based reset mechanism</li>
+<li>Account lockout: After 5 failed login attempts</li>
+</ul>
+<p><strong>5.2.2 Authorization</strong></p>
+<ul>
+<li>Role-based access control (RBAC)</li>
+<li>Granular permissions at module and action level</li>
+<li>Data isolation: Users see only authorized data</li>
+<li>API endpoint protection with JWT tokens</li>
+<li>Audit logging of all sensitive operations</li>
+</ul>
+<p><strong>5.2.3 Data Security</strong></p>
+<ul>
+<li>Data encryption: TLS 1.2+ for data in transit</li>
+<li>Database encryption: Encrypted at rest</li>
+<li>Sensitive data masking: PII and financial data</li>
+<li>Secure file storage: Access-controlled document repository</li>
+<li>Regular security patches and updates</li>
+<li>SQL injection prevention</li>
+<li>XSS protection</li>
+<li>CSRF protection</li>
+</ul>
+<p><strong>5.2.4 Privacy</strong></p>
+<ul>
+<li>GDPR compliance for data handling</li>
+<li>User consent for location tracking</li>
+<li>Data retention policies</li>
+<li>Right to delete user data</li>
+<li>Privacy settings for personnel tracking</li>
+</ul>
+<h3>5.3 Reliability</h3>
+<p><strong>5.3.1 Availability</strong></p>
+<ul>
+<li>System uptime: 99.5% availability (excluding planned maintenance)</li>
+<li>Planned maintenance: Max 4 hours/month during off-peak</li>
+<li>Graceful degradation: Core features work during partial outages</li>
+<li>Redundancy: Database replication for failover</li>
+</ul>
+<p><strong>5.3.2 Error Handling</strong></p>
+<ul>
+<li>User-friendly error messages</li>
+<li>Automatic retry for transient failures</li>
+<li>Error logging and monitoring</li>
+<li>Graceful handling of external API failures</li>
+<li>Data validation to prevent corrupt data</li>
+<li>Transaction rollback on failures</li>
+</ul>
+<p><strong>5.3.3 Data Backup</strong></p>
+<ul>
+<li>Automated daily backups</li>
+<li>Backup retention: 30 days</li>
+<li>Point-in-time recovery capability</li>
+<li>Backup testing: Monthly verification</li>
+<li>Off-site backup storage</li>
+</ul>
+<h3>5.4 Maintainability</h3>
+<p><strong>5.4.1 Code Quality</strong></p>
+<ul>
+<li>TypeScript for type safety</li>
+<li>Consistent coding standards</li>
+<li>Comprehensive code comments</li>
+<li>Modular architecture</li>
+<li>Reusable components</li>
+<li>Unit test coverage: Minimum 70%</li>
+<li>Integration test coverage for critical paths</li>
+</ul>
+<p><strong>5.4.2 Monitoring</strong></p>
+<ul>
+<li>Application performance monitoring (APM)</li>
+<li>Error tracking and alerting</li>
+<li>Usage analytics</li>
+<li>System health dashboards</li>
+<li>Log aggregation and analysis</li>
+<li>Database performance monitoring</li>
+</ul>
+<p><strong>5.4.3 Documentation</strong></p>
+<ul>
+<li>API documentation (OpenAPI/Swagger)</li>
+<li>System architecture documentation</li>
+<li>User manuals and guides</li>
+<li>Admin documentation</li>
+<li>Code documentation</li>
+<li>Change log and version history</li>
+</ul>
+<h3>5.5 Portability</h3>
+<p><strong>5.5.1 Platform Independence</strong></p>
+<ul>
+<li>Web-based application (browser-independent)</li>
+<li>Docker containerization for easy deployment</li>
+<li>Cloud-agnostic architecture</li>
+<li>Database migrations using Drizzle Kit</li>
+<li>Environment-based configuration</li>
+</ul>
+<p><strong>5.5.2 Browser Compatibility</strong></p>
+<ul>
+<li>Chrome 90+ (primary)</li>
+<li>Firefox 88+</li>
+<li>Safari 14+</li>
+<li>Edge 90+</li>
+<li>Mobile Safari (iOS)</li>
+<li>Chrome Mobile (Android)</li>
+</ul>
+<h3>5.6 Scalability</h3>
+<p><strong>5.6.1 Horizontal Scalability</strong></p>
+<ul>
+<li>Stateless application design</li>
+<li>Load balancer support</li>
+<li>Database connection pooling</li>
+<li>Caching layer (Redis) for performance</li>
+<li>CDN for static assets</li>
+</ul>
+<p><strong>5.6.2 Vertical Scalability</strong></p>
+<ul>
+<li>Efficient database queries with indexing</li>
+<li>Lazy loading for large datasets</li>
+<li>Pagination for list views</li>
+<li>Background job processing for heavy tasks</li>
+<li>Optimized asset delivery</li>
+</ul>
+<p><strong>5.6.3 Data Scalability</strong></p>
+<ul>
+<li>Partitioning strategy for large tables</li>
+<li>Archival process for old data</li>
+<li>Efficient data aggregation for analytics</li>
+<li>Incremental data loading</li>
+<li>Compression for file storage</li>
+</ul>
+<hr>
+<h2 id="6-other-requirements">6. Other Requirements</h2>
+<h3>6.1 Legal and Compliance Requirements</h3>
+<p><strong>6.1.1 Data Protection</strong></p>
+<ul>
+<li>Compliance with Indian IT Act 2000</li>
+<li>GDPR compliance for EU customers (if applicable)</li>
+<li>Data localization requirements (India)</li>
+<li>Privacy policy and terms of service</li>
+<li>Cookie consent management</li>
+</ul>
+<p><strong>6.1.2 Financial Compliance</strong></p>
+<ul>
+<li>GST compliance for invoicing</li>
+<li>E-invoice generation as per Indian regulations</li>
+<li>TDS calculation compliance</li>
+<li>Financial year reporting (April-March)</li>
+</ul>
+<p><strong>6.1.3 Industry Standards</strong></p>
+<ul>
+<li>Solar industry best practices</li>
+<li>Renewable energy regulations (India)</li>
+<li>Electrical safety standards</li>
+<li>Quality management system (ISO 9001)</li>
+</ul>
+<h3>6.2 Future Enhancements</h3>
+<p><strong>6.2.1 Phase 2 Features (6-12 months)</strong></p>
+<ol>
+<li><p><strong>Mobile Native Apps</strong></p>
+<ul>
+<li>iOS and Android native applications</li>
+<li>Offline-first architecture</li>
+<li>Push notifications</li>
+</ul>
+</li>
+<li><p><strong>Advanced AI Features</strong></p>
+<ul>
+<li>Predictive lead scoring</li>
+<li>Automated proposal generation</li>
+<li>Intelligent task prioritization</li>
+<li>Anomaly detection in plant performance</li>
+</ul>
+</li>
+<li><p><strong>Customer Portal</strong></p>
+<ul>
+<li>Self-service portal for customers</li>
+<li>Real-time system monitoring</li>
+<li>Document access</li>
+<li>Ticket creation</li>
+</ul>
+</li>
+<li><p><strong>Advanced Analytics</strong></p>
+<ul>
+<li>Machine learning-based forecasting</li>
+<li>Predictive maintenance</li>
+<li>Business intelligence with custom dashboards</li>
+<li>Competitor analysis</li>
+</ul>
+</li>
+<li><p><strong>IoT Integration</strong></p>
+<ul>
+<li>Direct integration with solar inverters</li>
+<li>Smart meter integration</li>
+<li>Weather station data integration</li>
+</ul>
+</li>
+</ol>
+<p><strong>6.2.2 Phase 3 Features (12-24 months)</strong></p>
+<ol>
+<li><p><strong>Marketplace</strong></p>
+<ul>
+<li>Component marketplace</li>
+<li>Service provider network</li>
+<li>Customer referral program</li>
+</ul>
+</li>
+<li><p><strong>Blockchain Integration</strong></p>
+<ul>
+<li>Renewable energy certificates</li>
+<li>Carbon credit tracking</li>
+<li>Smart contracts for PPAs</li>
+</ul>
+</li>
+<li><p><strong>Voice Integration</strong></p>
+<ul>
+<li>Voice commands for common tasks</li>
+<li>Voice-based reporting</li>
+<li>Interactive voice response (IVR)</li>
+</ul>
+</li>
+<li><p><strong>Augmented Reality (AR)</strong></p>
+<ul>
+<li>AR-based site survey</li>
+<li>Virtual installation preview</li>
+<li>Remote assistance with AR</li>
+</ul>
+</li>
+</ol>
+<h3>6.3 Training Requirements</h3>
+<p><strong>6.3.1 End User Training</strong></p>
+<ul>
+<li>Role-based training modules (2-4 hours per role)</li>
+<li>Video tutorials for each module</li>
+<li>Interactive demo environment</li>
+<li>Quick reference guides</li>
+<li>Regular webinar sessions</li>
+</ul>
+<p><strong>6.3.2 Administrator Training</strong></p>
+<ul>
+<li>System configuration training (8 hours)</li>
+<li>Integration setup training</li>
+<li>User management training</li>
+<li>Troubleshooting guide</li>
+<li>Advanced features workshop</li>
+</ul>
+<p><strong>6.3.3 Developer Training</strong></p>
+<ul>
+<li>API documentation workshop</li>
+<li>Integration development guide</li>
+<li>Custom report development</li>
+<li>System architecture overview</li>
+</ul>
+<h3>6.4 Deployment Requirements</h3>
+<p><strong>6.4.1 Initial Deployment</strong></p>
+<ul>
+<li>Cloud hosting (AWS/Azure/GCP) or on-premise</li>
+<li>SSL certificate installation</li>
+<li>Domain configuration</li>
+<li>Email server setup</li>
+<li>Integration configuration</li>
+<li>Initial data migration</li>
+<li>User account creation</li>
+<li>System testing and validation</li>
+</ul>
+<p><strong>6.4.2 Rollout Strategy</strong></p>
+<ul>
+<li>Phase 1: Pilot with 10-20 users (2 weeks)</li>
+<li>Phase 2: Department-wise rollout (4 weeks)</li>
+<li>Phase 3: Full organization rollout (2 weeks)</li>
+<li>Parallel run with legacy system (4 weeks)</li>
+<li>Final cutover and decommission</li>
+</ul>
+<h3>6.5 Support and Maintenance</h3>
+<p><strong>6.5.1 Support Levels</strong></p>
+<ul>
+<li><strong>L1 Support:</strong> Help desk for user queries (email/chat)</li>
+<li><strong>L2 Support:</strong> Technical support for issues (remote assistance)</li>
+<li><strong>L3 Support:</strong> Development team for critical issues</li>
+</ul>
+<p><strong>6.5.2 Maintenance Windows</strong></p>
+<ul>
+<li>Weekly maintenance: Sunday 12:00 AM - 4:00 AM IST</li>
+<li>Emergency maintenance: As needed with notification</li>
+<li>Update deployment: Monthly feature releases</li>
+<li>Security patches: Within 48 hours of availability</li>
+</ul>
+<p><strong>6.5.3 Service Level Agreement (SLA)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Response Time</th>
+<th>Resolution Time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Critical (System down)</td>
+<td>1 hour</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td>High (Major feature broken)</td>
+<td>4 hours</td>
+<td>24 hours</td>
+</tr>
+<tr>
+<td>Medium (Minor issue)</td>
+<td>8 hours</td>
+<td>72 hours</td>
+</tr>
+<tr>
+<td>Low (Enhancement/question)</td>
+<td>24 hours</td>
+<td>1 week</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="7-appendices">7. Appendices</h2>
+<h3>7.1 Glossary</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Plant</td>
+<td>A complete solar power installation</td>
+</tr>
+<tr>
+<td>RMS</td>
+<td>Remote Monitoring System for solar plants</td>
+</tr>
+<tr>
+<td>EPC</td>
+<td>Engineering, Procurement, and Construction</td>
+</tr>
+<tr>
+<td>AMC</td>
+<td>Annual Maintenance Contract</td>
+</tr>
+<tr>
+<td>PPA</td>
+<td>Power Purchase Agreement</td>
+</tr>
+<tr>
+<td>ROI</td>
+<td>Return on Investment</td>
+</tr>
+<tr>
+<td>GST</td>
+<td>Goods and Services Tax (India)</td>
+</tr>
+<tr>
+<td>TDS</td>
+<td>Tax Deducted at Source</td>
+</tr>
+<tr>
+<td>NOC</td>
+<td>No Objection Certificate</td>
+</tr>
+<tr>
+<td>kW/kWp</td>
+<td>Kilowatt / Kilowatt peak (solar capacity)</td>
+</tr>
+<tr>
+<td>Inverter</td>
+<td>Device converting DC to AC power</td>
+</tr>
+<tr>
+<td>SCADA</td>
+<td>Supervisory Control and Data Acquisition</td>
+</tr>
+<tr>
+<td>NPS</td>
+<td>Net Promoter Score</td>
+</tr>
+<tr>
+<td>JWT</td>
+<td>JSON Web Token</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>Role-Based Access Control</td>
+</tr>
+<tr>
+<td>SSO</td>
+<td>Single Sign-On</td>
+</tr>
+<tr>
+<td>VoIP</td>
+<td>Voice over Internet Protocol</td>
+</tr>
+</tbody></table>
+<h3>7.2 Module Dependency Matrix</h3>
+<pre><code>Dashboard → All modules (read-only aggregation)
+Leads → Proposals, Projects, Communications, Tasks
+Proposals → Projects, Documents, Invoicing
+Projects → Surveys, Tasks, Documents, Expenses, Performance
+Surveys → Projects, Documents, Location Tracking
+Communications → Leads, Projects, Tickets, Chatbot
+Tasks → Projects, Surveys, Tickets
+Documents → All modules (attachments)
+Tickets → Projects, Communications, Location Tracking
+Inventory → Projects, Vendors, Expenses
+Invoicing → Projects, Proposals, Expenses
+Subsidies → Projects, Documents
+Performance → Projects, Plant Monitoring, RMS Integration
+Vendors → Inventory, Expenses
+Users → All modules (access control)
+Analytics → All modules (reporting)
+Expenses → Projects, Invoicing
+Feedback → Projects, Tickets, Google Reviews
+Settings → All modules (configuration)
+Plant Monitoring → Performance, RMS Integration
+Location Tracking → Surveys, Tickets
+Chatbot → Communications, Leads
+Data Import/Export → All modules
+Google Reviews → Feedback
+Auto-Dialer → Leads, Communications
+RMS Integration → Performance, Plant Monitoring
+</code></pre>
+<h3>7.3 User Role Permission Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Admin</th>
+<th>Manager</th>
+<th>Sales</th>
+<th>Engineer</th>
+<th>Service</th>
+<th>Finance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dashboard</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Leads</td>
+<td>Full</td>
+<td>Full</td>
+<td>Assigned</td>
+<td>View</td>
+<td>-</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Proposals</td>
+<td>Full</td>
+<td>Full</td>
+<td>Create/Edit</td>
+<td>View</td>
+<td>-</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Projects</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>Assigned</td>
+<td>View</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Surveys</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>Full</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Communications</td>
+<td>Full</td>
+<td>Full</td>
+<td>Full</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Tasks</td>
+<td>Full</td>
+<td>Full</td>
+<td>Assigned</td>
+<td>Assigned</td>
+<td>Assigned</td>
+<td>Assigned</td>
+</tr>
+<tr>
+<td>Documents</td>
+<td>Full</td>
+<td>Full</td>
+<td>Upload/View</td>
+<td>Upload/View</td>
+<td>View</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Tickets</td>
+<td>Full</td>
+<td>Full</td>
+<td>-</td>
+<td>View</td>
+<td>Full</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Inventory</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Invoicing</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>-</td>
+<td>-</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Subsidies</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>-</td>
+<td>-</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Vendors</td>
+<td>Full</td>
+<td>Full</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Users</td>
+<td>Full</td>
+<td>View</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Analytics</td>
+<td>Full</td>
+<td>Full</td>
+<td>View Own</td>
+<td>View Own</td>
+<td>View Own</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Expenses</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>Submit</td>
+<td>Submit</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Full</td>
+<td>Full</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+<td>View</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>Full</td>
+<td>Limited</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Limited</td>
+</tr>
+</tbody></table>
+<p><strong>Legend:</strong> Full = All operations, View = Read-only, Assigned = Only assigned items, - = No access</p>
+<h3>7.4 Technical Stack Summary</h3>
+<p><strong>Frontend:</strong></p>
+<ul>
+<li>React 18 with TypeScript</li>
+<li>Wouter for routing</li>
+<li>TanStack Query for data fetching</li>
+<li>Shadcn UI component library</li>
+<li>Tailwind CSS for styling</li>
+<li>Recharts for data visualization</li>
+<li>Lucide React for icons</li>
+<li>React Hook Form for forms</li>
+<li>Zod for validation</li>
+</ul>
+<p><strong>Backend:</strong></p>
+<ul>
+<li>Node.js 18+ with Express</li>
+<li>TypeScript</li>
+<li>Drizzle ORM</li>
+<li>MongoDB database</li>
+<li>Express Session for auth</li>
+<li>WebSocket (ws) for real-time</li>
+</ul>
+<p><strong>DevOps:</strong></p>
+<ul>
+<li>Vite for build tooling</li>
+<li>ESBuild for production builds</li>
+<li>Git for version control</li>
+<li>Docker for containerization</li>
+<li>Nginx for reverse proxy</li>
+<li>SSL/TLS certificates</li>
+</ul>
+<p><strong>Integrations:</strong></p>
+<ul>
+<li>Google APIs (Reviews, Maps)</li>
+<li>WhatsApp Business API</li>
+<li>Email (SMTP/IMAP)</li>
+<li>Solar RMS APIs</li>
+<li>VoIP/Dialer APIs</li>
+<li>Payment Gateways</li>
+<li>SMS Gateways</li>
+</ul>
+<h3>7.5 Database Schema Overview</h3>
+<p><strong>Core Tables:</strong></p>
+<ul>
+<li>users (id, username, password, role, status)</li>
+<li>leads (id, name, company, contact, stage, assigned_to, created_at)</li>
+<li>projects (id, name, lead_id, status, engineer_id, start_date, end_date)</li>
+<li>surveys (id, project_id, location, gps_coords, engineer_id, status, date)</li>
+<li>proposals (id, lead_id, project_size, value, status, created_at)</li>
+<li>communications (id, type, recipient, content, status, sent_at)</li>
+<li>tasks (id, title, assigned_to, priority, status, due_date)</li>
+<li>documents (id, name, type, category, project_id, path, uploaded_at)</li>
+<li>tickets (id, project_id, type, status, assigned_to, created_at)</li>
+<li>inventory (id, item_name, quantity, reorder_level, warehouse)</li>
+<li>invoices (id, project_id, amount, status, due_date, paid_at)</li>
+<li>subsidies (id, project_id, scheme, amount, status, applied_at)</li>
+<li>performance (id, project_id, timestamp, generation, voltage, current)</li>
+<li>vendors (id, name, contact, rating, payment_terms)</li>
+<li>expenses (id, project_id, category, amount, status, date)</li>
+<li>feedback (id, project_id, rating, comments, created_at)</li>
+<li>plants (id, project_id, capacity, location, rms_id, status)</li>
+<li>locations (id, user_id, latitude, longitude, timestamp)</li>
+<li>chat_logs (id, session_id, message, sender, timestamp)</li>
+<li>reviews (id, project_id, source, rating, content, date)</li>
+</ul>
+<h3>7.6 API Authentication Flow</h3>
+<pre><code>1. User Login
+   POST /api/auth/login
+   { username, password }
+   → Validate credentials
+   → Create session
+   → Return JWT token
+
+2. Authenticated Request
+   GET /api/leads
+   Header: Authorization: Bearer &lt;JWT&gt;
+   → Validate token
+   → Check permissions
+   → Return data
+
+3. Session Management
+   - Token expiry: 8 hours
+   - Refresh token: 30 days
+   - Single session per user (SSO)
+   - Logout invalidates token
+</code></pre>
+<h3>7.7 Color Scheme Specifications</h3>
+<p><strong>Light Mode:</strong></p>
+<ul>
+<li>Primary Green: <code>#22c55e</code> (Solid, no gradient)</li>
+<li>Background White: <code>#ffffff</code></li>
+<li>Text Dark: <code>#1f2937</code></li>
+<li>Border Gray: <code>#e5e7eb</code></li>
+<li>Success Green: <code>#22c55e</code></li>
+<li>Warning Yellow: <code>#fbbf24</code></li>
+<li>Error Red: <code>#ef4444</code></li>
+<li>Neutral White: <code>#f9fafb</code></li>
+</ul>
+<p><strong>Dark Mode:</strong></p>
+<ul>
+<li>Primary Green: <code>#22c55e</code> (Same solid green)</li>
+<li>Background Dark: <code>#1f2937</code></li>
+<li>Text Light: <code>#f9fafb</code></li>
+<li>Border Dark: <code>#374151</code></li>
+<li>Success Green: <code>#22c55e</code></li>
+<li>Warning Yellow: <code>#fbbf24</code></li>
+<li>Error Red: <code>#ef4444</code></li>
+<li>Neutral Dark: <code>#111827</code></li>
+</ul>
+<p><strong>Important:</strong> No gradients allowed. All colors must be solid.</p>
+<h3>7.8 Screenshots and Wireframes</h3>
+<p>[Placeholder: Screenshots of current prototype will be attached]</p>
+<ul>
+<li>Figure 1: Dashboard Overview</li>
+<li>Figure 2: Lead Management Kanban Board</li>
+<li>Figure 3: Project Timeline View</li>
+<li>Figure 4: Plant Monitoring Dashboard</li>
+<li>Figure 5: Live Location Tracking Map</li>
+<li>Figure 6: Mobile Interface Examples</li>
+<li>Figure 7: Communication Hub Interface</li>
+<li>Figure 8: Analytics Dashboard</li>
+</ul>
+<h3>7.9 System Architecture Diagram</h3>
+<p>[Placeholder: Architecture diagram will be provided]</p>
+<pre><code>                    ┌──────────────┐
+                    │   Users      │
+                    │ (Web/Mobile) │
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │   Frontend   │
+                    │    (React)   │
+                    └──────┬───────┘
+                           │
+                    ┌──────▼───────┐
+                    │   Backend    │
+                    │  (Express)   │
+                    └──────┬───────┘
+                           │
+         ┌─────────────────┼─────────────────┐
+         │                 │                 │
+    ┌────▼────┐      ┌────▼────┐      ┌────▼────┐
+    │Database │      │External │      │  File   │
+    │(MongoDB)    │  APIs   │      │ Storage │
+    └─────────┘      └─────────┘      └─────────┘
+</code></pre>
+<h3>7.10 Integration Checklist</h3>
+<p><strong>Pre-Launch Integrations:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Email SMTP/IMAP configuration</li>
+<li><input disabled="" type="checkbox"> WhatsApp Business API setup</li>
+<li><input disabled="" type="checkbox"> Google Reviews API connection</li>
+<li><input disabled="" type="checkbox"> SMS Gateway integration</li>
+<li><input disabled="" type="checkbox"> Payment gateway setup</li>
+<li><input disabled="" type="checkbox"> SSL certificate installation</li>
+</ul>
+<p><strong>Post-Launch Integrations:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Solar RMS vendor connections</li>
+<li><input disabled="" type="checkbox"> Auto-dialer system integration</li>
+<li><input disabled="" type="checkbox"> GPS/Maps API configuration</li>
+<li><input disabled="" type="checkbox"> Chatbot AI training</li>
+<li><input disabled="" type="checkbox"> Backup system configuration</li>
+</ul>
+<h3>7.11 Data Migration Plan</h3>
+<p><strong>Phase 1: Analysis</strong></p>
+<ol>
+<li>Analyze legacy CRM data structure</li>
+<li>Map fields to new system</li>
+<li>Identify data quality issues</li>
+<li>Create transformation rules</li>
+</ol>
+<p><strong>Phase 2: Preparation</strong></p>
+<ol>
+<li>Clean and validate data</li>
+<li>Export from legacy system</li>
+<li>Transform to new format</li>
+<li>Create import templates</li>
+</ol>
+<p><strong>Phase 3: Migration</strong></p>
+<ol>
+<li>Import leads (historical data)</li>
+<li>Import customer/project data</li>
+<li>Import documents</li>
+<li>Verify data integrity</li>
+</ol>
+<p><strong>Phase 4: Validation</strong></p>
+<ol>
+<li>Data reconciliation</li>
+<li>User acceptance testing</li>
+<li>Parallel run comparison</li>
+<li>Final approval</li>
+</ol>
+<hr>
+<h2>Document Control</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Author</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.0</td>
+<td>2025-12-01</td>
+<td>Development Team</td>
+<td>Initial prototype SRS</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>2025-10-12</td>
+<td>Development Team</td>
+<td>Added 16 new requirements and comprehensive details</td>
+</tr>
+</tbody></table>
+<p><strong>Approvals:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Signature</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product Owner</td>
+<td>__________</td>
+<td>__________</td>
+<td>__________</td>
+</tr>
+<tr>
+<td>Technical Lead</td>
+<td>__________</td>
+<td>__________</td>
+<td>__________</td>
+</tr>
+<tr>
+<td>Business Stakeholder</td>
+<td>__________</td>
+<td>__________</td>
+<td>__________</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>End of Software Requirements Specification Document</strong></p>
+
+  
+  <script>
+    // Add smooth scroll and print functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add IDs to headings for navigation
+      const headings = document.querySelectorAll('h1, h2, h3, h4');
+      headings.forEach((heading, index) => {
+        if (!heading.id) {
+          heading.id = 'heading-' + index;
+        }
+      });
+      
+      // Enhance tables
+      const tables = document.querySelectorAll('table');
+      tables.forEach(table => {
+        if (!table.querySelector('thead') && table.rows[0]) {
+          const thead = document.createElement('thead');
+          thead.appendChild(table.rows[0]);
+          table.insertBefore(thead, table.firstChild);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+  </main>
+
+  <script>
+    // Add IDs to h2 elements for navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const h2Elements = document.querySelectorAll('.main-content h2');
+      h2Elements.forEach((h2, index) => {
+        const text = h2.textContent.trim();
+        // Extract section number and title
+        if (text.match(/^§\s*\d+\./)) {
+          const sectionNum = text.replace('§ ', '').split('.')[0];
+          const sectionTitle = text.replace(/^§\s*\d+\.\s*/, '').toLowerCase().replace(/\s+/g, '-');
+          const id = `${sectionNum}-${sectionTitle}`;
+          h2.setAttribute('id', id);
+        }
+      });
+
+      const tocLinks = document.querySelectorAll('.toc-link');
+      const sections = document.querySelectorAll('.main-content h2[id]');
+
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const headerOffset = 90;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+
+            tocLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+          }
+        });
+      });
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+          if (current && link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Mobile menu functionality
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const sidebar = document.querySelector('.sidebar');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+
+      function toggleMobileMenu() {
+        sidebar.classList.toggle('open');
+        mobileOverlay.classList.toggle('active');
+      }
+
+      function closeMobileMenu() {
+        sidebar.classList.remove('open');
+        mobileOverlay.classList.remove('active');
+      }
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+      }
+
+      if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+      }
+
+      // Close menu when clicking a link
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+            closeMobileMenu();
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
