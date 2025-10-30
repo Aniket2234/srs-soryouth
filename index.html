@@ -811,6 +811,7 @@
 <li><strong>Live Location Tracking</strong> - Track field personnel in real-time</li>
 <li><strong>Chatbot Integration</strong> - AI-powered customer support</li>
 <li><strong>Data Import/Export</strong> - Migrate data from legacy systems</li>
+<li><strong>HRMS (Human Resource Management System)</strong> - Comprehensive employee management, attendance, leave, payroll, and performance tracking</li>
 </ol>
 <h3>2.3 User Classes and Characteristics</h3>
 <table>
@@ -2818,6 +2819,102 @@ FR-032.14: The system shall enable journey branching based on customer behavior<
 <li>Journey comparison (actual vs. ideal)</li>
 <li>Bottleneck identification alerts</li>
 <li>Stage completion percentage</li>
+</ul>
+<hr>
+<h3>3.33 HRMS (Human Resource Management System) <span class="badge">NEW</span></h3>
+<p><strong>3.33.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Comprehensive Human Resource Management System for managing employees, attendance, leave, payroll, performance reviews, recruitment, and training</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-033</li>
+</ul>
+<p><strong>3.33.2 Functional Requirements</strong></p>
+<p>FR-033.1: The system shall maintain complete employee profiles with personal, professional, and contact information
+FR-033.2: The system shall track employee attendance with check-in/check-out times
+FR-033.3: The system shall support multiple attendance methods (biometric, GPS, manual entry)
+FR-033.4: The system shall manage leave applications (casual, sick, earned, unpaid)
+FR-033.5: The system shall implement leave approval workflow with reporting hierarchy
+FR-033.6: The system shall calculate leave balance automatically
+FR-033.7: The system shall process monthly payroll with salary components (basic, allowances, deductions)
+FR-033.8: The system shall generate payslips with detailed breakup
+FR-033.9: The system shall track employee performance with KPIs and goals
+FR-033.10: The system shall enable performance reviews and appraisals
+FR-033.11: The system shall manage employee documents (contracts, certificates, IDs)
+FR-033.12: The system shall track employee training and skill development
+FR-033.13: The system shall manage recruitment process from job posting to onboarding
+FR-033.14: The system shall track employee hierarchy and reporting structure
+FR-033.15: The system shall manage employee assets (laptops, phones, vehicles)
+FR-033.16: The system shall generate HR analytics and reports
+FR-033.17: The system shall track employee work hours and overtime
+FR-033.18: The system shall manage employee benefits (insurance, PF, ESI)
+FR-033.19: The system shall send birthday and anniversary wishes automatically
+FR-033.20: The system shall maintain compliance with labor laws and regulations</p>
+<p><strong>3.33.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Employee attendance check-in</td>
+<td>Record time and location, validate shift</td>
+<td>Attendance marked</td>
+</tr>
+<tr>
+<td>Leave application</td>
+<td>Check balance, route to approver</td>
+<td>Leave request created</td>
+</tr>
+<tr>
+<td>Leave approval/rejection</td>
+<td>Update leave balance, notify employee</td>
+<td>Leave status updated</td>
+</tr>
+<tr>
+<td>Month-end trigger</td>
+<td>Calculate salary, deductions, generate payslips</td>
+<td>Payroll processed</td>
+</tr>
+<tr>
+<td>Performance review submission</td>
+<td>Store ratings, calculate scores</td>
+<td>Review completed</td>
+</tr>
+<tr>
+<td>Employee onboarding</td>
+<td>Create profile, assign assets, add to hierarchy</td>
+<td>New employee added</td>
+</tr>
+</tbody></table>
+<p><strong>3.33.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Employee dashboard with attendance summary and leave balance</li>
+<li>Attendance calendar with color-coded status (present, absent, leave, holiday)</li>
+<li>Leave application form with balance display</li>
+<li>Payslip viewer with download option</li>
+<li>Performance review interface with rating scales</li>
+<li>Employee directory with search and filters</li>
+<li>Organizational hierarchy chart</li>
+<li>HR admin dashboard with key metrics</li>
+<li>Recruitment pipeline with candidate stages</li>
+<li>Training calendar and course enrollment</li>
+<li>Asset assignment tracking</li>
+<li>Compliance checklist and alerts</li>
+</ul>
+<p><strong>3.33.5 Sub-Modules</strong></p>
+<ul>
+<li><strong>Employee Management:</strong> Complete employee lifecycle from onboarding to exit</li>
+<li><strong>Attendance Management:</strong> Real-time attendance tracking with multiple methods</li>
+<li><strong>Leave Management:</strong> Automated leave workflow with balance tracking</li>
+<li><strong>Payroll Management:</strong> Monthly salary processing with statutory compliance</li>
+<li><strong>Performance Management:</strong> KPI tracking, goal setting, and appraisals</li>
+<li><strong>Recruitment Management:</strong> End-to-end hiring process automation</li>
+<li><strong>Training & Development:</strong> Employee skill development tracking</li>
+<li><strong>Asset Management:</strong> Company asset allocation and tracking</li>
+<li><strong>HR Analytics:</strong> Workforce analytics and reporting</li>
 </ul>
 <hr>
 <h2 id="4-external-interface-requirements">4. External Interface Requirements</h2>

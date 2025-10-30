@@ -95,11 +95,13 @@ The project is configured for Replit autoscale deployment:
 - Enhanced Lead Management module to emphasize multi-source integrations (JustDial, Google, WhatsApp)
 - Added Notification System module (MOD-031) for admin-to-executive communications
 - Added Customer Journey Management module (MOD-032) for end-to-end customer lifecycle tracking
+- Added HRMS (Human Resource Management System) module (MOD-033) - comprehensive employee management, attendance, leave, payroll, performance tracking, recruitment, and training
 - Updated Service Ticketing to be cross-functional across departments
 - Removed Section 6 "Other Requirements" (including Future Enhancements, Training, Deployment, Support)
 - Renumbered Appendices from Section 7 to Section 6
 - Updated all references throughout document (user roles, API endpoints, dependency matrices, permission tables)
 - Ensured document structure consistency across all sections
+- Created professional project quotation (quotation.html) with 93-day timeline and ₹6,04,500 total cost (no GST)
 
 ## User Preferences
 None recorded yet.
