@@ -45,24 +45,24 @@ This project hosts the Software Requirements Specification (SRS) document for th
 - **Title**: Software Requirements Specification - Solar CRM System
 - **Company**: Soryouth Renewable Energy Pvt Ltd
 - **Version**: 2.0
-- **Date**: October 12, 2025
+- **Date**: October 30, 2025
 - **Project**: Comprehensive Solar CRM system
 
 ## SRS Document Contents
 The documentation describes a complete Solar CRM system with these major modules:
 
 ### Core Features
-1. **Lead Management** - Multi-source lead capture and tracking
+1. **Lead Management** - Multi-source lead capture and tracking (JustDial, Google, WhatsApp integrations)
 2. **Proposal & Quotation** - Automated proposal generation
 3. **Project Management** - Visual project tracking
 4. **Site Survey Management** - Survey scheduling and documentation
 5. **Multi-Channel Communication** - Email, WhatsApp, SMS integration
 6. **Task Management** - Team task assignment and tracking
-7. **Document Management** - Centralized document storage
-8. **Service Ticketing** - AMC and maintenance management
+7. **Document Management** - Centralized document storage for business documents
+8. **Service Ticketing** - Cross-functional AMC and maintenance management
+9. **DMS - Document Management System** - Barcode scanning for product tracking and inventory management
 
 ### Additional Features
-- Inventory Management
 - Invoicing & Billing
 - Subsidy Management
 - Vendor Management
@@ -71,6 +71,8 @@ The documentation describes a complete Solar CRM system with these major modules
 - Analytics & Reporting
 - GPS Tracking
 - Role-based Access Control
+- **Notification System** - Admin-to-executive task notifications and reminders
+- **Customer Journey Management** - End-to-end customer lifecycle tracking
 
 ## Deployment
 The project is configured for Replit autoscale deployment:
@@ -79,12 +81,25 @@ The project is configured for Replit autoscale deployment:
 - **Port**: 5000 (automatically exposed)
 
 ## Recent Changes (October 30, 2025)
+### Initial Setup (Earlier)
 - Installed Python 3.11 toolchain
 - Created HTTP server with cache control
 - Configured workflow for webview on port 5000
 - Set up deployment configuration
 - Added .gitignore for Python projects
-- Updated documentation
+
+### Latest Updates (October 30, 2025)
+- Updated document version from 1.0 to 2.0
+- Updated document date to October 30, 2025
+- Replaced Inventory Management module with DMS - Document Management System (includes barcode scanning for product tracking)
+- Enhanced Lead Management module to emphasize multi-source integrations (JustDial, Google, WhatsApp)
+- Added Notification System module (MOD-031) for admin-to-executive communications
+- Added Customer Journey Management module (MOD-032) for end-to-end customer lifecycle tracking
+- Updated Service Ticketing to be cross-functional across departments
+- Removed Section 6 "Other Requirements" (including Future Enhancements, Training, Deployment, Support)
+- Renumbered Appendices from Section 7 to Section 6
+- Updated all references throughout document (user roles, API endpoints, dependency matrices, permission tables)
+- Ensured document structure consistency across all sections
 
 ## User Preferences
 None recorded yet.
