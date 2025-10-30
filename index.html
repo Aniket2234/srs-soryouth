@@ -565,11 +565,11 @@
     <div class="header-meta">
       <div class="header-meta-item">
         <span class="header-meta-label">Version</span>
-        <span class="header-meta-value">1.0</span>
+        <span class="header-meta-value">2.0</span>
       </div>
       <div class="header-meta-item">
         <span class="header-meta-label">Date</span>
-        <span class="header-meta-value">October 12, 2025</span>
+        <span class="header-meta-value">October 30, 2025</span>
       </div>
       <div class="header-meta-item">
         <span class="header-meta-label">Company</span>
@@ -589,15 +589,14 @@
       <li class="toc-item"><a href="#3-system-features" class="toc-link">3. System Features</a></li>
       <li class="toc-item"><a href="#4-external-interface-requirements" class="toc-link">4. External Interface Requirements</a></li>
       <li class="toc-item"><a href="#5-non-functional-requirements" class="toc-link">5. Non-Functional Requirements</a></li>
-      <li class="toc-item"><a href="#6-other-requirements" class="toc-link">6. Other Requirements</a></li>
-      <li class="toc-item"><a href="#7-appendices" class="toc-link">7. Appendices</a></li>
+      <li class="toc-item"><a href="#6-appendices" class="toc-link">6. Appendices</a></li>
     </ul>
   </nav>
 
   <main class="main-content">
   <h1>Software Requirements Specification (SRS)</h1>
 <h2>Solar CRM System for Soryouth Renewable Energy Pvt Ltd</h2>
-<p><strong>Version:</strong> 2.0<br><strong>Date:</strong> October 12, 2025<br><strong>Prepared by:</strong> Development Team<br><strong>Company:</strong> Soryouth Renewable Energy Pvt Ltd</p>
+<p><strong>Version:</strong> 2.0<br><strong>Date:</strong> October 30, 2025<br><strong>Prepared by:</strong> Development Team<br><strong>Company:</strong> Soryouth Renewable Energy Pvt Ltd</p>
 <hr>
 <h2>Table of Contents</h2>
 <ol>
@@ -606,8 +605,7 @@
 <li><a href="#3-system-features">System Features</a></li>
 <li><a href="#4-external-interface-requirements">External Interface Requirements</a></li>
 <li><a href="#5-non-functional-requirements">Non-Functional Requirements</a></li>
-<li><a href="#6-other-requirements">Other Requirements</a></li>
-<li><a href="#7-appendices">Appendices</a></li>
+<li><a href="#6-appendices">Appendices</a></li>
 </ol>
 <hr>
 <h2 id="1-introduction">1. Introduction</h2>
@@ -1053,21 +1051,25 @@ FR-001.12: Users shall be able to customize dashboard layout and widgets</p>
 <li>Mobile-optimized card layout</li>
 </ul>
 <hr>
-<h3>3.2 Lead Management Module</h3>
+<h3>3.2 Lead Management Module - Unified Multi-Source Integration <span class="badge">ENHANCED</span></h3>
 <p><strong>3.2.1 Description and Priority</strong></p>
 <ul>
-<li><strong>Description:</strong> Comprehensive lead capture, tracking, nurturing, and conversion system with multi-channel integration</li>
-<li><strong>Priority:</strong> High</li>
+<li><strong>Description:</strong> Comprehensive lead capture, tracking, nurturing, and conversion system with unified multi-channel integration - bringing all leads from JustDial, Google, WhatsApp, Email, Website, and Phone into ONE centralized platform</li>
+<li><strong>Priority:</strong> Critical</li>
 <li><strong>Module ID:</strong> MOD-002</li>
 </ul>
 <p><strong>3.2.2 Functional Requirements</strong></p>
-<p>FR-002.1: The system shall capture leads from multiple sources (manual entry, website, email, WhatsApp, phone)
-FR-002.2: The system shall automatically import leads from email (<a href="mailto:leads@company.com">leads@company.com</a>)
-FR-002.3: The system shall integrate WhatsApp messages as lead sources
-FR-002.4: The system shall track lead stages (New, Contacted, Qualified, Proposal, Negotiation, Won, Lost)
-FR-002.5: The system shall assign leads to sales executives automatically or manually
-FR-002.6: The system shall enable lead transfer between sales executives
-FR-002.7: The system shall restrict lead visibility based on assignment (privacy)
+<p>FR-002.1: The system shall capture leads from ALL sources in one unified platform (JustDial, Google Ads, Google My Business, website forms, email, WhatsApp Business, phone calls, manual entry)
+FR-002.2: The system shall automatically import leads from JustDial API integration with real-time synchronization
+FR-002.3: The system shall integrate Google Ads and Google My Business leads automatically
+FR-002.4: The system shall capture WhatsApp Business messages as leads with full conversation history
+FR-002.5: The system shall automatically import leads from email (<a href="mailto:leads@company.com">leads@company.com</a>)
+FR-002.6: The system shall provide a unified dashboard showing ALL leads from all sources in one place
+FR-002.7: The system shall tag leads with their source (JustDial, Google, WhatsApp, etc.) for tracking and analytics
+FR-002.8: The system shall track lead stages (New, Contacted, Qualified, Proposal, Negotiation, Won, Lost)
+FR-002.9: The system shall assign leads to sales executives automatically or manually
+FR-002.10: The system shall enable lead transfer between sales executives
+FR-002.11: The system shall restrict lead visibility based on assignment (privacy)
 FR-002.8: The system shall store complete lead history including electricity bills
 FR-002.9: The system shall track site survey history for each lead
 FR-002.10: The system shall maintain interaction timeline for each lead
@@ -1474,17 +1476,18 @@ FR-008.10: The system shall generate documents from templates with data auto-fil
 <li>Template gallery with preview</li>
 </ul>
 <hr>
-<h3>3.9 Service Ticketing (AMC &amp; Tickets) Module</h3>
+<h3>3.9 Service Ticketing (AMC &amp; Tickets) Module - Cross-Functional <span class="badge">ENHANCED</span></h3>
 <p><strong>3.9.1 Description and Priority</strong></p>
 <ul>
-<li><strong>Description:</strong> Manage annual maintenance contracts and service requests</li>
+<li><strong>Description:</strong> Cross-functional service ticket management for annual maintenance contracts and service requests across all departments (Sales, Technical, Admin, Finance)</li>
 <li><strong>Priority:</strong> High</li>
 <li><strong>Module ID:</strong> MOD-009</li>
 </ul>
 <p><strong>3.9.2 Functional Requirements</strong></p>
-<p>FR-009.1: The system shall create service tickets from customer requests
-FR-009.2: The system shall track ticket status (Open, In Progress, Resolved, Closed)
-FR-009.3: The system shall assign tickets to service technicians
+<p>FR-009.1: The system shall create cross-functional service tickets from customer requests across all departments
+FR-009.2: The system shall track ticket status (Open, In Progress, Resolved, Closed) with department-specific workflows
+FR-009.3: The system shall assign tickets to service technicians or any relevant department personnel
+FR-009.4: The system shall enable cross-department ticket collaboration and handoffs
 FR-009.4: The system shall track AMC contracts with renewal reminders
 FR-009.5: The system shall schedule preventive maintenance
 FR-009.6: The system shall show live location of technicians en route
@@ -1527,24 +1530,26 @@ FR-009.10: The system shall generate service reports</p>
 <li>Customer feedback form</li>
 </ul>
 <hr>
-<h3>3.10 Inventory Management Module</h3>
+<h3>3.10 DMS - Document Management System (NEW) <span class="badge">NEW</span></h3>
 <p><strong>3.10.1 Description and Priority</strong></p>
 <ul>
-<li><strong>Description:</strong> Track solar components, supplies, and stock levels with reorder alerts</li>
+<li><strong>Description:</strong> Comprehensive product tracking and document management system using barcode technology for technicians to scan and store product details directly in the CRM</li>
 <li><strong>Priority:</strong> High</li>
 <li><strong>Module ID:</strong> MOD-010</li>
 </ul>
 <p><strong>3.10.2 Functional Requirements</strong></p>
-<p>FR-010.1: The system shall maintain inventory of all solar components
-FR-010.2: The system shall track stock levels (in stock, reorder level, critical level)
-FR-010.3: The system shall send reorder alerts when stock falls below threshold
-FR-010.4: The system shall track inventory by location/warehouse
-FR-010.5: The system shall record stock movements (in, out, transfer)
-FR-010.6: The system shall integrate with project module for component allocation
-FR-010.7: The system shall track vendor-wise inventory
-FR-010.8: The system shall enable barcode/QR code scanning
-FR-010.9: The system shall generate stock reports
-FR-010.10: The system shall forecast inventory needs based on project pipeline</p>
+<p>FR-010.1: The system shall assign unique barcodes to all products and components
+FR-010.2: The system shall enable technicians to scan product barcodes using mobile devices
+FR-010.3: The system shall automatically capture and store product details upon barcode scanning
+FR-010.4: The system shall maintain a centralized database of all scanned products
+FR-010.5: The system shall track product history and movement through barcode scanning
+FR-010.6: The system shall link scanned products to specific projects and customers
+FR-010.7: The system shall generate product reports based on scanned data
+FR-010.8: The system shall support batch barcode scanning for multiple products
+FR-010.9: The system shall validate product authenticity through barcode verification
+FR-010.10: The system shall store product images, specifications, and installation details
+FR-010.11: The system shall enable real-time synchronization of scanned data to CRM
+FR-010.12: The system shall provide offline scanning capability with auto-sync when online</p>
 <p><strong>3.10.3 Inputs, Processing, and Outputs</strong></p>
 <table>
 <thead>
@@ -1555,29 +1560,36 @@ FR-010.10: The system shall forecast inventory needs based on project pipeline</
 </tr>
 </thead>
 <tbody><tr>
-<td>Stock receipt</td>
-<td>Update inventory levels</td>
-<td>Stock increased</td>
+<td>Product barcode scan</td>
+<td>Decode barcode and retrieve product details</td>
+<td>Product information displayed</td>
 </tr>
 <tr>
-<td>Project allocation</td>
-<td>Reduce stock and link to project</td>
-<td>Stock allocated</td>
+<td>Scanned product data</td>
+<td>Store in CRM database with timestamp and technician info</td>
+<td>Product record created/updated</td>
 </tr>
 <tr>
-<td>Reorder level breach</td>
-<td>Generate alert and procurement request</td>
-<td>Reorder alert</td>
+<td>Product assignment to project</td>
+<td>Link product to project and customer</td>
+<td>Product-project association stored</td>
+</tr>
+<tr>
+<td>Product movement tracking</td>
+<td>Log location and status changes</td>
+<td>Movement history updated</td>
 </tr>
 </tbody></table>
 <p><strong>3.10.4 UI/UX Requirements</strong></p>
 <ul>
-<li>Inventory dashboard with stock levels</li>
-<li>Color-coded alerts (critical=red, warning=yellow, ok=green)</li>
-<li>Stock movement log</li>
-<li>Barcode scanner integration</li>
-<li>Warehouse location map</li>
-<li>Stock transfer form</li>
+<li>Mobile-optimized barcode scanner interface</li>
+<li>Quick scan button with camera integration</li>
+<li>Product detail view with all scanned information</li>
+<li>Scan history log with filters</li>
+<li>Batch scanning mode for multiple products</li>
+<li>Offline mode indicator with sync status</li>
+<li>Product search by barcode or name</li>
+<li>Visual confirmation of successful scans</li>
 </ul>
 <hr>
 <h3>3.11 Invoicing &amp; Billing Module</h3>
@@ -2681,6 +2693,134 @@ FR-030.10: The system shall provide RMS integration configuration interface</p>
 <li>Connection health monitor</li>
 </ul>
 <hr>
+<h3>3.31 Notification System for Admin to Executives <span class="badge">NEW</span></h3>
+<p><strong>3.31.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> Comprehensive notification system for admin to send notifications to executives about task assignments, pending tasks, and urgent matters</li>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Module ID:</strong> MOD-031</li>
+</ul>
+<p><strong>3.31.2 Functional Requirements</strong></p>
+<p>FR-031.1: The system shall enable admin to send notifications to specific executives or groups
+FR-031.2: The system shall send task assignment notifications with details and deadlines
+FR-031.3: The system shall send automated pending task reminders to executives
+FR-031.4: The system shall enable priority-based notifications (urgent, high, normal, low)
+FR-031.5: The system shall support multi-channel notifications (in-app, email, WhatsApp, SMS)
+FR-031.6: The system shall provide notification templates for common scenarios
+FR-031.7: The system shall track notification delivery and read status
+FR-031.8: The system shall send urgent notifications with special alerts (sound, badge)
+FR-031.9: The system shall enable executives to acknowledge and respond to notifications
+FR-031.10: The system shall maintain notification history and audit trail
+FR-031.11: The system shall allow filtering and searching notifications
+FR-031.12: The system shall enable scheduled notifications for future delivery</p>
+<p><strong>3.31.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Notification creation by admin</td>
+<td>Compose and schedule notification</td>
+<td>Notification queued</td>
+</tr>
+<tr>
+<td>Task assignment</td>
+<td>Auto-generate notification with task details</td>
+<td>Notification sent to assigned executive</td>
+</tr>
+<tr>
+<td>Pending task check</td>
+<td>Identify pending tasks and create reminders</td>
+<td>Reminder notifications sent</td>
+</tr>
+<tr>
+<td>Urgent notification</td>
+<td>Send immediate notification across all channels</td>
+<td>Alert delivered to executive</td>
+</tr>
+</tbody></table>
+<p><strong>3.31.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Notification center with inbox interface</li>
+<li>Notification composition screen with templates</li>
+<li>Priority level selector (urgent, high, normal, low)</li>
+<li>Recipient selector (individual or groups)</li>
+<li>Read/unread indicators</li>
+<li>Push notification pop-ups with actions</li>
+<li>Notification badge on app icon</li>
+<li>Notification filtering and search</li>
+<li>Delivery and read receipts</li>
+</ul>
+<hr>
+<h3>3.32 Customer Journey Management <span class="badge">NEW</span></h3>
+<p><strong>3.32.1 Description and Priority</strong></p>
+<ul>
+<li><strong>Description:</strong> End-to-end customer journey tracking and management from initial contact through post-installation support and beyond</li>
+<li><strong>Priority:</strong> Critical</li>
+<li><strong>Module ID:</strong> MOD-032</li>
+</ul>
+<p><strong>3.32.2 Functional Requirements</strong></p>
+<p>FR-032.1: The system shall track complete customer journey from lead to loyal customer
+FR-032.2: The system shall define journey stages (Lead, Prospect, Customer, Loyal Customer, Advocate)
+FR-032.3: The system shall automatically progress customers through journey stages
+FR-032.4: The system shall track all customer touchpoints and interactions
+FR-032.5: The system shall maintain timeline view of entire customer journey
+FR-032.6: The system shall capture customer sentiment at each stage
+FR-032.7: The system shall identify bottlenecks in customer journey
+FR-032.8: The system shall provide journey analytics and insights
+FR-032.9: The system shall enable custom journey stages per customer type
+FR-032.10: The system shall track milestone achievements (first call, site visit, proposal, installation, payment)
+FR-032.11: The system shall send automated journey-based communications
+FR-032.12: The system shall measure customer satisfaction at each journey stage
+FR-032.13: The system shall provide journey completion predictions
+FR-032.14: The system shall enable journey branching based on customer behavior</p>
+<p><strong>3.32.3 Inputs, Processing, and Outputs</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Processing</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer interaction</td>
+<td>Log touchpoint and update journey stage</td>
+<td>Journey updated</td>
+</tr>
+<tr>
+<td>Milestone completion</td>
+<td>Progress customer to next stage</td>
+<td>Stage progression recorded</td>
+</tr>
+<tr>
+<td>Customer feedback</td>
+<td>Capture sentiment and update journey</td>
+<td>Sentiment recorded</td>
+</tr>
+<tr>
+<td>Journey analytics request</td>
+<td>Analyze journey data and identify patterns</td>
+<td>Journey insights generated</td>
+</tr>
+</tbody></table>
+<p><strong>3.32.4 UI/UX Requirements</strong></p>
+<ul>
+<li>Visual journey map with stages and progress</li>
+<li>Timeline view of customer interactions</li>
+<li>Journey analytics dashboard</li>
+<li>Funnel visualization showing drop-offs</li>
+<li>Sentiment indicators at each stage</li>
+<li>Customer journey cards with key milestones</li>
+<li>Journey comparison (actual vs. ideal)</li>
+<li>Bottleneck identification alerts</li>
+<li>Stage completion percentage</li>
+</ul>
+<hr>
 <h2 id="4-external-interface-requirements">4. External Interface Requirements</h2>
 <h3>4.1 User Interfaces</h3>
 <p><strong>4.1.1 General UI Characteristics</strong></p>
@@ -3050,194 +3190,8 @@ FR-030.10: The system shall provide RMS integration configuration interface</p>
 <li>Compression for file storage</li>
 </ul>
 <hr>
-<h2 id="6-other-requirements">6. Other Requirements</h2>
-<h3>6.1 Legal and Compliance Requirements</h3>
-<p><strong>6.1.1 Data Protection</strong></p>
-<ul>
-<li>Compliance with Indian IT Act 2000</li>
-<li>GDPR compliance for EU customers (if applicable)</li>
-<li>Data localization requirements (India)</li>
-<li>Privacy policy and terms of service</li>
-<li>Cookie consent management</li>
-</ul>
-<p><strong>6.1.2 Financial Compliance</strong></p>
-<ul>
-<li>GST compliance for invoicing</li>
-<li>E-invoice generation as per Indian regulations</li>
-<li>TDS calculation compliance</li>
-<li>Financial year reporting (April-March)</li>
-</ul>
-<p><strong>6.1.3 Industry Standards</strong></p>
-<ul>
-<li>Solar industry best practices</li>
-<li>Renewable energy regulations (India)</li>
-<li>Electrical safety standards</li>
-<li>Quality management system (ISO 9001)</li>
-</ul>
-<h3>6.2 Future Enhancements</h3>
-<p><strong>6.2.1 Phase 2 Features (6-12 months)</strong></p>
-<ol>
-<li><p><strong>Mobile Native Apps</strong></p>
-<ul>
-<li>iOS and Android native applications</li>
-<li>Offline-first architecture</li>
-<li>Push notifications</li>
-</ul>
-</li>
-<li><p><strong>Advanced AI Features</strong></p>
-<ul>
-<li>Predictive lead scoring</li>
-<li>Automated proposal generation</li>
-<li>Intelligent task prioritization</li>
-<li>Anomaly detection in plant performance</li>
-</ul>
-</li>
-<li><p><strong>Customer Portal</strong></p>
-<ul>
-<li>Self-service portal for customers</li>
-<li>Real-time system monitoring</li>
-<li>Document access</li>
-<li>Ticket creation</li>
-</ul>
-</li>
-<li><p><strong>Advanced Analytics</strong></p>
-<ul>
-<li>Machine learning-based forecasting</li>
-<li>Predictive maintenance</li>
-<li>Business intelligence with custom dashboards</li>
-<li>Competitor analysis</li>
-</ul>
-</li>
-<li><p><strong>IoT Integration</strong></p>
-<ul>
-<li>Direct integration with solar inverters</li>
-<li>Smart meter integration</li>
-<li>Weather station data integration</li>
-</ul>
-</li>
-</ol>
-<p><strong>6.2.2 Phase 3 Features (12-24 months)</strong></p>
-<ol>
-<li><p><strong>Marketplace</strong></p>
-<ul>
-<li>Component marketplace</li>
-<li>Service provider network</li>
-<li>Customer referral program</li>
-</ul>
-</li>
-<li><p><strong>Blockchain Integration</strong></p>
-<ul>
-<li>Renewable energy certificates</li>
-<li>Carbon credit tracking</li>
-<li>Smart contracts for PPAs</li>
-</ul>
-</li>
-<li><p><strong>Voice Integration</strong></p>
-<ul>
-<li>Voice commands for common tasks</li>
-<li>Voice-based reporting</li>
-<li>Interactive voice response (IVR)</li>
-</ul>
-</li>
-<li><p><strong>Augmented Reality (AR)</strong></p>
-<ul>
-<li>AR-based site survey</li>
-<li>Virtual installation preview</li>
-<li>Remote assistance with AR</li>
-</ul>
-</li>
-</ol>
-<h3>6.3 Training Requirements</h3>
-<p><strong>6.3.1 End User Training</strong></p>
-<ul>
-<li>Role-based training modules (2-4 hours per role)</li>
-<li>Video tutorials for each module</li>
-<li>Interactive demo environment</li>
-<li>Quick reference guides</li>
-<li>Regular webinar sessions</li>
-</ul>
-<p><strong>6.3.2 Administrator Training</strong></p>
-<ul>
-<li>System configuration training (8 hours)</li>
-<li>Integration setup training</li>
-<li>User management training</li>
-<li>Troubleshooting guide</li>
-<li>Advanced features workshop</li>
-</ul>
-<p><strong>6.3.3 Developer Training</strong></p>
-<ul>
-<li>API documentation workshop</li>
-<li>Integration development guide</li>
-<li>Custom report development</li>
-<li>System architecture overview</li>
-</ul>
-<h3>6.4 Deployment Requirements</h3>
-<p><strong>6.4.1 Initial Deployment</strong></p>
-<ul>
-<li>Cloud hosting (AWS/Azure/GCP) or on-premise</li>
-<li>SSL certificate installation</li>
-<li>Domain configuration</li>
-<li>Email server setup</li>
-<li>Integration configuration</li>
-<li>Initial data migration</li>
-<li>User account creation</li>
-<li>System testing and validation</li>
-</ul>
-<p><strong>6.4.2 Rollout Strategy</strong></p>
-<ul>
-<li>Phase 1: Pilot with 10-20 users (2 weeks)</li>
-<li>Phase 2: Department-wise rollout (4 weeks)</li>
-<li>Phase 3: Full organization rollout (2 weeks)</li>
-<li>Parallel run with legacy system (4 weeks)</li>
-<li>Final cutover and decommission</li>
-</ul>
-<h3>6.5 Support and Maintenance</h3>
-<p><strong>6.5.1 Support Levels</strong></p>
-<ul>
-<li><strong>L1 Support:</strong> Help desk for user queries (email/chat)</li>
-<li><strong>L2 Support:</strong> Technical support for issues (remote assistance)</li>
-<li><strong>L3 Support:</strong> Development team for critical issues</li>
-</ul>
-<p><strong>6.5.2 Maintenance Windows</strong></p>
-<ul>
-<li>Weekly maintenance: Sunday 12:00 AM - 4:00 AM IST</li>
-<li>Emergency maintenance: As needed with notification</li>
-<li>Update deployment: Monthly feature releases</li>
-<li>Security patches: Within 48 hours of availability</li>
-</ul>
-<p><strong>6.5.3 Service Level Agreement (SLA)</strong></p>
-<table>
-<thead>
-<tr>
-<th>Priority</th>
-<th>Response Time</th>
-<th>Resolution Time</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Critical (System down)</td>
-<td>1 hour</td>
-<td>4 hours</td>
-</tr>
-<tr>
-<td>High (Major feature broken)</td>
-<td>4 hours</td>
-<td>24 hours</td>
-</tr>
-<tr>
-<td>Medium (Minor issue)</td>
-<td>8 hours</td>
-<td>72 hours</td>
-</tr>
-<tr>
-<td>Low (Enhancement/question)</td>
-<td>24 hours</td>
-<td>1 week</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="7-appendices">7. Appendices</h2>
-<h3>7.1 Glossary</h3>
+<h2 id="6-appendices">6. Appendices</h2>
+<h3>6.1 Glossary</h3>
 <table>
 <thead>
 <tr>
@@ -3314,7 +3268,7 @@ FR-030.10: The system shall provide RMS integration configuration interface</p>
 <td>Voice over Internet Protocol</td>
 </tr>
 </tbody></table>
-<h3>7.2 Module Dependency Matrix</h3>
+<h3>6.2 Module Dependency Matrix</h3>
 <pre><code>Dashboard → All modules (read-only aggregation)
 Leads → Proposals, Projects, Communications, Tasks
 Proposals → Projects, Documents, Invoicing
@@ -3342,7 +3296,7 @@ Google Reviews → Feedback
 Auto-Dialer → Leads, Communications
 RMS Integration → Performance, Plant Monitoring
 </code></pre>
-<h3>7.3 User Role Permission Matrix</h3>
+<h3>6.3 User Role Permission Matrix</h3>
 <table>
 <thead>
 <tr>
@@ -3528,7 +3482,7 @@ RMS Integration → Performance, Plant Monitoring
 </tr>
 </tbody></table>
 <p><strong>Legend:</strong> Full = All operations, View = Read-only, Assigned = Only assigned items, - = No access</p>
-<h3>7.4 Technical Stack Summary</h3>
+<h3>6.4 Technical Stack Summary</h3>
 <p><strong>Frontend:</strong></p>
 <ul>
 <li>React 18 with TypeScript</li>
@@ -3569,7 +3523,7 @@ RMS Integration → Performance, Plant Monitoring
 <li>Payment Gateways</li>
 <li>SMS Gateways</li>
 </ul>
-<h3>7.5 Database Schema Overview</h3>
+<h3>6.5 Database Schema Overview</h3>
 <p><strong>Core Tables:</strong></p>
 <ul>
 <li>users (id, username, password, role, status)</li>
@@ -3593,7 +3547,7 @@ RMS Integration → Performance, Plant Monitoring
 <li>chat_logs (id, session_id, message, sender, timestamp)</li>
 <li>reviews (id, project_id, source, rating, content, date)</li>
 </ul>
-<h3>7.6 API Authentication Flow</h3>
+<h3>6.6 API Authentication Flow</h3>
 <pre><code>1. User Login
    POST /api/auth/login
    { username, password }
@@ -3614,7 +3568,7 @@ RMS Integration → Performance, Plant Monitoring
    - Single session per user (SSO)
    - Logout invalidates token
 </code></pre>
-<h3>7.7 Color Scheme Specifications</h3>
+<h3>6.7 Color Scheme Specifications</h3>
 <p><strong>Light Mode:</strong></p>
 <ul>
 <li>Primary Green: <code>#22c55e</code> (Solid, no gradient)</li>
@@ -3638,7 +3592,7 @@ RMS Integration → Performance, Plant Monitoring
 <li>Neutral Dark: <code>#111827</code></li>
 </ul>
 <p><strong>Important:</strong> No gradients allowed. All colors must be solid.</p>
-<h3>7.8 Screenshots and Wireframes</h3>
+<h3>6.8 Screenshots and Wireframes</h3>
 <p>[Placeholder: Screenshots of current prototype will be attached]</p>
 <ul>
 <li>Figure 1: Dashboard Overview</li>
@@ -3650,7 +3604,7 @@ RMS Integration → Performance, Plant Monitoring
 <li>Figure 7: Communication Hub Interface</li>
 <li>Figure 8: Analytics Dashboard</li>
 </ul>
-<h3>7.9 System Architecture Diagram</h3>
+<h3>6.9 System Architecture Diagram</h3>
 <p>[Placeholder: Architecture diagram will be provided]</p>
 <pre><code>                    ┌──────────────┐
                     │   Users      │
@@ -3674,7 +3628,7 @@ RMS Integration → Performance, Plant Monitoring
     │(MongoDB)    │  APIs   │      │ Storage │
     └─────────┘      └─────────┘      └─────────┘
 </code></pre>
-<h3>7.10 Integration Checklist</h3>
+<h3>6.10 Integration Checklist</h3>
 <p><strong>Pre-Launch Integrations:</strong></p>
 <ul>
 <li><input disabled="" type="checkbox"> Email SMTP/IMAP configuration</li>
@@ -3692,7 +3646,7 @@ RMS Integration → Performance, Plant Monitoring
 <li><input disabled="" type="checkbox"> Chatbot AI training</li>
 <li><input disabled="" type="checkbox"> Backup system configuration</li>
 </ul>
-<h3>7.11 Data Migration Plan</h3>
+<h3>6.11 Data Migration Plan</h3>
 <p><strong>Phase 1: Analysis</strong></p>
 <ol>
 <li>Analyze legacy CRM data structure</li>
