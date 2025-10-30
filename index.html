@@ -738,15 +738,14 @@
 <li>WhatsApp Business API Documentation</li>
 </ul>
 <h3>1.5 Overview</h3>
-<p>This SRS document is organized into seven main sections:</p>
+<p>This SRS document is organized into six main sections:</p>
 <ul>
 <li>Section 1 provides an introduction and context</li>
 <li>Section 2 describes the overall product perspective and features</li>
 <li>Section 3 details specific system features and functional requirements</li>
 <li>Section 4 specifies external interface requirements</li>
 <li>Section 5 defines non-functional requirements</li>
-<li>Section 6 covers additional requirements and future enhancements</li>
-<li>Section 7 includes appendices with supplementary information</li>
+<li>Section 6 includes appendices with supplementary information</li>
 </ul>
 <hr>
 <h2 id="2-overall-description">2. Overall Description</h2>
@@ -798,7 +797,7 @@
 <li><strong>Task Management</strong> - Assign and track team activities</li>
 <li><strong>Document Management</strong> - Centralized document storage and templates</li>
 <li><strong>Service Ticketing</strong> - AMC and maintenance request management</li>
-<li><strong>Inventory Management</strong> - Track solar components and supplies</li>
+<li><strong>DMS - Product Tracking</strong> - Barcode scanning system for tracking solar components and inventory</li>
 <li><strong>Invoicing &amp; Billing</strong> - Generate invoices and track payments</li>
 <li><strong>Subsidy Management</strong> - Process government subsidy applications</li>
 <li><strong>Performance Monitoring</strong> - Track installed system performance</li>
@@ -860,8 +859,8 @@
 <td>Daily</td>
 </tr>
 <tr>
-<td><strong>Inventory Manager</strong></td>
-<td>Tracks stock, manages procurement</td>
+<td><strong>DMS/Logistics Manager</strong></td>
+<td>Tracks products via barcode scanning, manages procurement</td>
 <td>Medium</td>
 <td>Daily</td>
 </tr>
@@ -3008,7 +3007,7 @@ FR-032.14: The system shall enable journey branching based on customer behavior<
 /api/tasks - Task management endpoints
 /api/documents - Document management endpoints
 /api/tickets - Service ticket endpoints
-/api/inventory - Inventory management endpoints
+/api/dms - DMS product tracking endpoints
 /api/invoices - Invoicing endpoints
 /api/subsidies - Subsidy management endpoints
 /api/performance - Performance data endpoints
@@ -3278,11 +3277,11 @@ Communications → Leads, Projects, Tickets, Chatbot
 Tasks → Projects, Surveys, Tickets
 Documents → All modules (attachments)
 Tickets → Projects, Communications, Location Tracking
-Inventory → Projects, Vendors, Expenses
+DMS → Projects, Vendors, Expenses
 Invoicing → Projects, Proposals, Expenses
 Subsidies → Projects, Documents
 Performance → Projects, Plant Monitoring, RMS Integration
-Vendors → Inventory, Expenses
+Vendors → DMS, Expenses
 Users → All modules (access control)
 Analytics → All modules (reporting)
 Expenses → Projects, Invoicing
@@ -3391,7 +3390,7 @@ RMS Integration → Performance, Plant Monitoring
 <td>-</td>
 </tr>
 <tr>
-<td>Inventory</td>
+<td>DMS</td>
 <td>Full</td>
 <td>Full</td>
 <td>View</td>
