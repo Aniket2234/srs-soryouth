@@ -101,7 +101,7 @@ The project is configured for Replit autoscale deployment:
 - Renumbered Appendices from Section 7 to Section 6
 - Updated all references throughout document (user roles, API endpoints, dependency matrices, permission tables)
 - Ensured document structure consistency across all sections
-- Created professional project quotation (quotation.html) with 93-day timeline and ₹6,04,500 total cost (no GST)
+- Created professional project quotation (quotation.html) with 90-day timeline and ₹5,85,000 total cost (no GST)
 
 ## User Preferences
 None recorded yet.
